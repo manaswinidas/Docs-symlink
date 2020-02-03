@@ -1,0 +1,1134 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE book [
+<!ENTITY % sgml.features "IGNORE">
+<!ENTITY % xml.features "INCLUDE">
+<!ENTITY % DOCBOOK_ENTS PUBLIC "-//OASIS//ENTITIES DocBook Character Entities V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/dbcentx.mod">
+%DOCBOOK_ENTS;
+]>
+<?asciidoc-toc?><?asciidoc-numbered?><book xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+<info>
+<title>Designing a decision service using DMN models</title><subtitle>
+</subtitle>
+
+<date>2020-01-31</date>
+<productname>Red Hat Decision Manager</productname>
+<productnumber>7.5</productnumber>
+<abstract>
+<para>This document describes how to implement Decision Model and Notation (DMN) models in your decision services in Red Hat Decision Manager 7.5.</para>
+</abstract>
+<xi:include xmlns:xi="http://www.w3.org/2001/XInclude" href="Common_Content/Legal_Notice.xml"/>
+</info>
+<preface>
+<title>Preface</title>
+<simpara>Red_Hat Customer_Content_Services &lt;<link xlink:href="mailto:brms-docs@redhat.com">brms-docs@redhat.com</link>&gt;</simpara>
+<simpara>As a business analyst or business rules developer, you can use Decision Model and Notation (DMN) to model a decision service graphically in a decision requirements diagram (DRD). This diagram consists of one or more decision requirements graphs (DRGs) that trace business decisions from start to finish, with each decision node using logic defined in DMN boxed expressions such as decision tables. Red Hat Decision Manager provides design and runtime support for DMN 1.2 models at conformance level 3. You can design your DMN models directly in Business Central or import existing DMN models into your Red Hat Decision Manager projects for deployment and execution.</simpara>
+<simpara>For more information about DMN, see the Object Management Group (OMG) <link xlink:href="https://www.omg.org/spec/DMN">Decision Model and Notation specification</link>.</simpara>
+</preface>
+<chapter xml:id="gs-decision-examples-central-con_dmn-models">
+<title>Example projects and business assets in Business Central</title>
+<simpara>Business Central contains example projects with example business assets that you can use as a reference for the
+rules or other assets
+that you create in your own Red Hat Decision Manager projects. Each sample project is designed differently to demonstrate
+decision management or business optimization
+assets and logic in Red Hat Decision Manager.</simpara>
+<note>
+<simpara>Red Hat does not provide support for the example code included in the Red Hat Decision Manager distribution.</simpara>
+</note>
+<simpara>The following example projects are available in Business Central:</simpara>
+<itemizedlist>
+<listitem>
+<simpara><emphasis role="strong">Traffic_Violation</emphasis>: (Decision management with DMN) Example traffic violation decision service using a Decision Model and Notation (DMN) model. Determines driver penalty and suspension based on traffic violations.</simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">Mortgages</emphasis>: (Decision management with rules) Example loan approval process using rule-based decision assets. Determines loan eligibility based on applicant data and qualifications.</simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">Employee_Rostering</emphasis>: (Business optimization) Example employee rostering optimization using decision and solver assets. Assigns employees to shifts based on skills.</simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">OptaCloud</emphasis>: (Business optimization) Example resource allocation optimization using decision and solver assets. Assigns processes to computers with limited resources.</simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">Course_Scheduling</emphasis>: (Business optimization) Example course scheduling and curriculum decision process. Assigns lectures to rooms and determines a student’s curriculum based on factors, such as course conflicts and class room capacity.</simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">Dinner_Party</emphasis>: (Business optimization) Guest seating optimization using guided decision tables. Assigns guest seating based on each guest’s job type, political beliefs, and known relationships.</simpara>
+</listitem>
+</itemizedlist>
+<section xml:id="gs-decision-examples-central-proc_dmn-models">
+<title>Accessing example projects and business assets in Business Central</title>
+<simpara>You can use the example projects in Business Central to explore example business assets as a reference for the rules or other assets that you create in your own Red Hat Decision Manager projects.</simpara>
+<itemizedlist>
+<title>Prerequisites</title>
+<listitem>
+<simpara>Business Central is installed and running. For installation options, see <link xlink:href="https://access.redhat.com/documentation/en-us/red_hat_decision_manager/7.5/html-single/planning_a_red_hat_decision_manager_installation"><emphasis>Planning a Red Hat Decision Manager installation</emphasis></link>.</simpara>
+</listitem>
+</itemizedlist>
+<orderedlist numeration="arabic">
+<title>Procedure</title>
+<listitem>
+<simpara>In Business Central, go to <emphasis role="strong">Menu</emphasis> → <emphasis role="strong">Design</emphasis> → <emphasis role="strong">Projects</emphasis> and click <emphasis role="strong">Try Samples</emphasis>.</simpara>
+<simpara>If a project already exists, click the three vertical dots in the upper-right corner of the <emphasis role="strong">Projects</emphasis> page and click <emphasis role="strong">Try Samples</emphasis>.</simpara>
+</listitem>
+<listitem>
+<simpara>Review the descriptions for each sample project to determine which project you want to explore. Each sample project is designed differently to demonstrate
+decision management or business optimization
+assets and logic in Red Hat Decision Manager.</simpara>
+</listitem>
+<listitem>
+<simpara>Select one or more sample projects and click <emphasis role="strong">Ok</emphasis> to add the projects to your space.</simpara>
+</listitem>
+<listitem>
+<simpara>In the <emphasis role="strong">Projects</emphasis> page of your space, select one of the new example projects to view the example assets for that project.</simpara>
+</listitem>
+<listitem>
+<simpara>Select each example asset to explore how the project is designed to achieve the specified goal or workflow.</simpara>
+</listitem>
+<listitem>
+<simpara>In the upper-right corner of the project <emphasis role="strong">Assets</emphasis> page, click <emphasis role="strong">Build</emphasis> to build the sample project or <emphasis role="strong">Deploy</emphasis> to build the project and then deploy it to Decision Server.</simpara>
+<note>
+<simpara>You can also select the <emphasis role="strong">Build &amp; Install</emphasis> option to build the project and publish the KJAR file to the configured Maven repository without deploying to a Decision Server. In a development environment, you can click <emphasis role="strong">Deploy</emphasis> to deploy the built KJAR file to a Decision Server without stopping any running instances (if applicable), or click <emphasis role="strong">Redeploy</emphasis> to deploy the built KJAR file and replace all instances. The next time you deploy or redeploy the built KJAR, the previous deployment unit (KIE container) is automatically updated in the same target Decision Server. In a production environment, the <emphasis role="strong">Redeploy</emphasis> option is disabled and you can click <emphasis role="strong">Deploy</emphasis> only to deploy the built KJAR file to a new deployment unit (KIE container) on a Decision Server.</simpara>
+<simpara>To configure the Decision Server environment mode, set the <literal>org.kie.server.mode</literal> system property to <literal>org.kie.server.mode=development</literal> or <literal>org.kie.server.mode=production</literal>. To configure the deployment behavior for a corresponding project in Business Central, go to project <emphasis role="strong">Settings</emphasis> → <emphasis role="strong">General Settings</emphasis> → <emphasis role="strong">Version</emphasis> and toggle the <emphasis role="strong">Development Mode</emphasis> option. By default, Decision Server and all new projects in Business Central are in development mode. You cannot deploy a project with <emphasis role="strong">Development Mode</emphasis> turned on or with a manually added <literal>SNAPSHOT</literal> version suffix to a Decision Server that is in production mode.</simpara>
+</note>
+<simpara>To review project deployment details (if applicable), go to <emphasis role="strong">Menu</emphasis> → <emphasis role="strong">Deploy</emphasis> → <emphasis role="strong">Execution Servers</emphasis>.</simpara>
+</listitem>
+</orderedlist>
+</section>
+</chapter>
+<chapter xml:id="gs-dmn-gs-new-project-creating-proc">
+<title>Creating the traffic violations project</title>
+<simpara>For this example, create a new project called <literal>traffic-violation</literal>. A project is a container for assets such as data objects, DMN assets, and test scenarios. This example project that you are creating is similar to the existing <emphasis role="strong">Traffic_Violation</emphasis> sample project in Business Central.</simpara>
+<orderedlist numeration="arabic">
+<title>Procedure</title>
+<listitem>
+<simpara>Log in to Business Central.</simpara>
+</listitem>
+<listitem>
+<simpara>Go to <emphasis role="strong">Menu</emphasis> → <emphasis role="strong">Design</emphasis> → <emphasis role="strong">Projects</emphasis>.</simpara>
+<simpara>Red Hat Decision Manager provides a default space called <emphasis role="strong">MySpace</emphasis>, as shown in the following image. You can use the default space to create and test example projects.</simpara>
+<figure>
+<title>Default space</title>
+<mediaobject>
+<imageobject>
+<imagedata fileref="images/_images/getting-started/spaces-teams.png"/>
+</imageobject>
+<textobject><phrase>spaces teams</phrase></textobject>
+</mediaobject>
+</figure>
+</listitem>
+<listitem>
+<simpara>Click <emphasis role="strong">Add Project</emphasis>.</simpara>
+</listitem>
+<listitem>
+<simpara>Enter <literal>traffic-violation</literal> in the <emphasis role="strong">Name</emphasis> field.</simpara>
+</listitem>
+<listitem>
+<simpara>Click <emphasis role="strong">Configure Advanced Options</emphasis> to expand the GAV fields and enter the following values:</simpara>
+<itemizedlist>
+<listitem>
+<simpara><emphasis role="strong">Group ID</emphasis>: <literal>org.kie.example.traffic</literal></simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">Artifact ID</emphasis>: <literal>traffic-violation</literal></simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">Version</emphasis>: <literal>1.0.0</literal></simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>Click <emphasis role="strong">Add</emphasis>.</simpara>
+<figure>
+<title>Add Project window with expanded Advanced Options</title>
+<mediaobject>
+<imageobject>
+<imagedata fileref="images/_images/dmn/dmn-new-project-gs.png"/>
+</imageobject>
+<textobject><phrase>dmn new project gs</phrase></textobject>
+</mediaobject>
+</figure>
+<simpara>The <emphasis role="strong">Assets</emphasis> view of the project opens.</simpara>
+</listitem>
+</orderedlist>
+</chapter>
+<chapter xml:id="ds-dmn-con_dmn-models">
+<title>Decision Model and Notation (DMN)</title>
+<simpara>Decision Model and Notation (DMN) is a standard established by the Object Management Group (OMG) for describing and modeling operational decisions. DMN defines an XML schema that enables DMN models to be shared between DMN-compliant platforms and across organizations so that business analysts and business rules developers can collaborate in designing and implementing DMN decision services. The DMN standard is similar to and can be used together with the Business Process Model and Notation (BPMN) standard for designing and modeling business processes.</simpara>
+<simpara>For more information about the background and applications of DMN, see the OMG <link xlink:href="https://www.omg.org/spec/DMN">Decision Model and Notation specification</link>.</simpara>
+<section xml:id="gs-dmn-gs-creating-drd-proc">
+<title>Creating the traffic violations DMN decision requirements diagram (DRD)</title>
+<simpara>A decision requirements diagram (DRD) is a visual representation of your DMN model. Use the  DMN designer in Business Central to design the DRD for the traffic violations project and to define the decision logic of the DRD components.</simpara>
+<figure>
+<title>DRD for the Traffic Violations example</title>
+<mediaobject>
+<imageobject>
+<imagedata fileref="images/_images/dmn/dmn-traffic-violations-drd.png"/>
+</imageobject>
+<textobject><phrase>dmn traffic violations drd</phrase></textobject>
+</mediaobject>
+</figure>
+<itemizedlist>
+<title>Prerequisites</title>
+<listitem>
+<simpara>You have created the traffic violations project in Business Central.</simpara>
+</listitem>
+</itemizedlist>
+<orderedlist numeration="arabic">
+<title>Procedure</title>
+<listitem>
+<simpara>On the <emphasis role="strong">traffic-violation</emphasis> project’s home page, click <emphasis role="strong">Add Asset</emphasis>.</simpara>
+</listitem>
+<listitem>
+<simpara>On the <emphasis role="strong">Add Asset</emphasis> page, click <emphasis role="strong">DMN</emphasis>. The <emphasis role="strong">Create new DMN</emphasis> window is opened.</simpara>
+<orderedlist numeration="loweralpha">
+<listitem>
+<simpara>In the <emphasis role="strong">Create new DMN</emphasis> window, enter <literal>Traffic Violation</literal> in the <emphasis role="strong">DMN</emphasis> name field.</simpara>
+</listitem>
+<listitem>
+<simpara>From the <emphasis role="strong">Package</emphasis> list, select <literal>org.kie.example.traffic.traffic_violation</literal>.</simpara>
+</listitem>
+<listitem>
+<simpara>Click <emphasis role="strong">Ok</emphasis>. The DMN asset in the DMN designer is opened.</simpara>
+</listitem>
+</orderedlist>
+</listitem>
+<listitem>
+<simpara>In the DMN designer canvas, drag two <emphasis role="strong">DMN Input Data</emphasis> input nodes on to the canvas.</simpara>
+</listitem>
+<listitem>
+<simpara>Double-click each input node and rename one to <literal>Driver</literal> and the other to <literal>Violation</literal>.</simpara>
+</listitem>
+<listitem>
+<simpara>Drag a <emphasis role="strong">DMN Decision</emphasis> decision node on to the canvas.</simpara>
+</listitem>
+<listitem>
+<simpara>Double-click the decision node and rename it to <literal>Fine</literal>.</simpara>
+</listitem>
+<listitem>
+<simpara>Click the <emphasis role="strong">Violation</emphasis> input node, select the <emphasis role="strong">Create DMN Information Requirement</emphasis> icon and click the <literal>Fine</literal> decision node to link the two nodes.</simpara>
+</listitem>
+<listitem>
+<simpara>Drag a <emphasis role="strong">DMN Decision</emphasis> decision node on to the canvas.</simpara>
+</listitem>
+<listitem>
+<simpara>Double-click the decision node and rename it to <literal>Should the driver be suspended?</literal>.</simpara>
+</listitem>
+<listitem>
+<simpara>Click the <emphasis role="strong">Driver</emphasis> input node, select the <emphasis role="strong">Create DMN Information Requirement</emphasis> icon and click the <emphasis role="strong">Should the driver be suspended?</emphasis> decision node to link the two nodes.</simpara>
+</listitem>
+<listitem>
+<simpara>Click the <emphasis role="strong">Fine</emphasis> decision node, select the <emphasis role="strong">Create DMN Information Requirement</emphasis> icon, and select the <emphasis role="strong">Should the driver be suspended?</emphasis> decision node.</simpara>
+</listitem>
+<listitem>
+<simpara>Click <emphasis role="strong">Save</emphasis> and click <emphasis role="strong">Save</emphasis> again to confirm.</simpara>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="gs-dmn-gs-creating-custom-datatypes-proc">
+<title>Creating the traffic violations DMN custom data types</title>
+<simpara>DMN data types determine the structure of the data that you use within a table, column, or field in a DMN boxed expression for defining decision logic. You can use default DMN data types (such as string, number, or boolean) or you can create custom data types to specify additional fields and constraints that you want to implement for the boxed expression values. Use the DMN designer’s <emphasis role="strong">Data Types</emphasis> tab in Business Central to define the custom data types for the traffic violations project.</simpara>
+<figure>
+<title>The custom data types tab</title>
+<mediaobject>
+<imageobject>
+<imagedata fileref="images/_images/dmn/dmn-custom-datatypes-tab.png"/>
+</imageobject>
+<textobject><phrase>dmn custom datatypes tab</phrase></textobject>
+</mediaobject>
+</figure>
+<simpara>Alternately, you can also access the <emphasis role="strong">Data Types</emphasis> tab from the <emphasis role="strong">Diagram properties</emphasis> tab on the right. From the <emphasis role="strong">Diagram properties</emphasis> tab, click <emphasis role="strong">Manage</emphasis> from <emphasis role="strong">Data type</emphasis> under <emphasis role="strong">Information item</emphasis>.</simpara>
+<figure>
+<title>Diagram properties tab</title>
+<mediaobject>
+<imageobject>
+<imagedata fileref="images/_images/dmn/dmn-diagram-properties-tab.png"/>
+</imageobject>
+<textobject><phrase>dmn diagram properties tab</phrase></textobject>
+</mediaobject>
+</figure>
+<simpara>The following tables list the <literal>Violation</literal>, <literal>Driver</literal>, and <literal>Fine</literal> custom data types that you will create for this project.</simpara>
+<table frame="all" rowsep="1" colsep="1">
+<title>Driver custom data types</title>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="50*"/>
+<colspec colname="col_2" colwidth="50*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Name</entry>
+<entry align="left" valign="top">Type</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara>tDriver</simpara></entry>
+<entry align="left" valign="top"><simpara>Structure</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Name</simpara></entry>
+<entry align="left" valign="top"><simpara>string</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Age</simpara></entry>
+<entry align="left" valign="top"><simpara>number</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>State</simpara></entry>
+<entry align="left" valign="top"><simpara>string</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>City</simpara></entry>
+<entry align="left" valign="top"><simpara>string</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Points</simpara></entry>
+<entry align="left" valign="top"><simpara>number</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+<table frame="all" rowsep="1" colsep="1">
+<title>Violation custom data types</title>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="50*"/>
+<colspec colname="col_2" colwidth="50*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Name</entry>
+<entry align="left" valign="top">Type</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara>tViolation</simpara></entry>
+<entry align="left" valign="top"><simpara>Structure</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Code</simpara></entry>
+<entry align="left" valign="top"><simpara>string</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Date</simpara></entry>
+<entry align="left" valign="top"><simpara>date</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Type</simpara></entry>
+<entry align="left" valign="top"><simpara>string</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Speed Limit</simpara></entry>
+<entry align="left" valign="top"><simpara>number</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Actual Speed</simpara></entry>
+<entry align="left" valign="top"><simpara>number</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+<table frame="all" rowsep="1" colsep="1">
+<title>Fine custom data types</title>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="50*"/>
+<colspec colname="col_2" colwidth="50*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Name</entry>
+<entry align="left" valign="top">Type</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara>tFine</simpara></entry>
+<entry align="left" valign="top"><simpara>Structure</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Amount</simpara></entry>
+<entry align="left" valign="top"><simpara>number</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Points</simpara></entry>
+<entry align="left" valign="top"><simpara>number</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+<itemizedlist>
+<title>Prerequisites</title>
+<listitem>
+<simpara>You created the traffic violations DMN decision requirements diagram (DRDs) in Business Central.</simpara>
+</listitem>
+</itemizedlist>
+<orderedlist numeration="arabic">
+<title>Procedure</title>
+<listitem>
+<simpara>To create the <emphasis role="strong">tDriver</emphasis> custom data type, click <emphasis role="strong">Add</emphasis> on the <emphasis role="strong">Data Types</emphasis> tab, enter <literal>tDriver</literal> in the <emphasis role="strong">Name</emphasis> field, select <literal>Structure</literal> from the <emphasis role="strong">Type</emphasis> list, and click <emphasis role="strong">Save</emphasis>.</simpara>
+<figure>
+<title>The tDriver custom data type</title>
+<mediaobject>
+<imageobject>
+<imagedata fileref="images/_images/dmn/dmn-tDriver-custom-datatype.png"/>
+</imageobject>
+<textobject><phrase>dmn tDriver custom datatype</phrase></textobject>
+</mediaobject>
+</figure>
+</listitem>
+<listitem>
+<simpara>To create the first nested data type, enter <literal>Name</literal> in the <emphasis role="strong">Name</emphasis> field of the nested data type, select <emphasis role="strong">String</emphasis> from the <emphasis role="strong">Type</emphasis> list and click <emphasis role="strong">Save</emphasis>.</simpara>
+</listitem>
+<listitem>
+<simpara>For each of the remaining nested data types, click the three vertical dots next to the <emphasis role="strong">tDriver</emphasis> data type, select <emphasis role="strong">Insert nested field</emphasis>, and add the following nested data types. Click <emphasis role="strong">Save</emphasis> for each nested data type you add.</simpara>
+<itemizedlist>
+<listitem>
+<simpara><emphasis role="strong">Name</emphasis> (string)</simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">Age</emphasis> (number)</simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">State</emphasis> (string)</simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">City</emphasis> (string)</simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">Points</emphasis> (number)</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>To create the <emphasis role="strong">tViolation</emphasis> custom data type, click <emphasis role="strong">Add</emphasis> on the <emphasis role="strong">Data Types</emphasis> tab, enter <literal>tViolation</literal> in the <emphasis role="strong">Name</emphasis> field, select <literal>Structure</literal> from the <emphasis role="strong">Type</emphasis> list, and click <emphasis role="strong">Save</emphasis>.</simpara>
+<figure>
+<title>The tViolation custom data type</title>
+<mediaobject>
+<imageobject>
+<imagedata fileref="images/_images/dmn/dmn-tViolation-custom-datatype.png"/>
+</imageobject>
+<textobject><phrase>dmn tViolation custom datatype</phrase></textobject>
+</mediaobject>
+</figure>
+</listitem>
+<listitem>
+<simpara>To create the first nested data type, enter <literal>Code</literal> in the <emphasis role="strong">Name</emphasis> field of the nested data type, select <emphasis role="strong">String</emphasis> from the <emphasis role="strong">Type</emphasis> list and click <emphasis role="strong">Save</emphasis>.</simpara>
+</listitem>
+<listitem>
+<simpara>For each of the remaining nested data types, click the three vertical dots next to the <emphasis role="strong">tViolation</emphasis> data type, select <emphasis role="strong">Insert nested field</emphasis>, and add the following nested data types. Click <emphasis role="strong">Save</emphasis> for each nested data type that you add.</simpara>
+<itemizedlist>
+<listitem>
+<simpara><emphasis role="strong">Code</emphasis> (string)</simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">Date</emphasis> (date)</simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">Type</emphasis> (string)</simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">Speed Limit</emphasis> (number)</simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">Actual Speed</emphasis> (number)</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>To add the following constraints to the <literal>Type</literal> nested data type, click <emphasis role="strong">Edit</emphasis> → <emphasis role="strong">Constraints</emphasis> → <emphasis role="strong">Enumeration</emphasis> and add the following constraints. Click the check icon <inlinemediaobject>
+<imageobject>
+<imagedata fileref="images/_images/dmn/dmn-datatype-constraints-tickmark.png"/>
+</imageobject>
+<textobject><phrase>dmn datatype constraints tickmark</phrase></textobject>
+</inlinemediaobject> to save each enumeration constraint that you add.</simpara>
+<itemizedlist>
+<listitem>
+<simpara><literal>"speed"</literal></simpara>
+</listitem>
+<listitem>
+<simpara><literal>"parking"</literal></simpara>
+</listitem>
+<listitem>
+<simpara><literal>"driving under the influence"</literal></simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>To create the <emphasis role="strong">tFine</emphasis> custom data type, click <emphasis role="strong">Add</emphasis> on the <emphasis role="strong">Data Types</emphasis> tab, enter <literal>tFine</literal> in the <emphasis role="strong">Name</emphasis> field, select <literal>Structure</literal> from the <emphasis role="strong">Type</emphasis> list, and click <emphasis role="strong">Save</emphasis>.</simpara>
+<figure>
+<title>The tFine custom data type</title>
+<mediaobject>
+<imageobject>
+<imagedata fileref="images/_images/dmn/dmn-tFine-custom-datatype.png"/>
+</imageobject>
+<textobject><phrase>dmn tFine custom datatype</phrase></textobject>
+</mediaobject>
+</figure>
+</listitem>
+<listitem>
+<simpara>To create the first nested data type, enter <literal>Amount</literal> in the <emphasis role="strong">Name</emphasis> field of the nested data type, select <emphasis role="strong">Number</emphasis> from the <emphasis role="strong">Type</emphasis> list and click <emphasis role="strong">Save</emphasis>.</simpara>
+</listitem>
+<listitem>
+<simpara>For each of the remaining nested data types, click the three vertical dots next to the <emphasis role="strong">tFine</emphasis> data type, select <emphasis role="strong">Insert nested field</emphasis>, and add the following nested data types. Click <emphasis role="strong">Save</emphasis> for each nested data type that you add.</simpara>
+<itemizedlist>
+<listitem>
+<simpara><emphasis role="strong">Amount</emphasis> (number)</simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">Points</emphasis> (number)</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>Once all the three custom data types are created, click <emphasis role="strong">Save</emphasis> to open the <emphasis role="strong">Confirm Save</emphasis> dialog box and click <emphasis role="strong">Save</emphasis> again.</simpara>
+</listitem>
+</orderedlist>
+</section>
+<section xml:id="gs-dmn-gs-assigning-custom-datatypes-proc">
+<title>Assigning custom data types to the DRD input and decision nodes</title>
+<simpara>After you create the DMN custom data types, assign them to the appropriate <emphasis role="strong">DMN Input Data</emphasis> and <emphasis role="strong">DMN Decision</emphasis> nodes in the traffic violations DRD.</simpara>
+<itemizedlist>
+<title>Prerequisites</title>
+<listitem>
+<simpara>You have created the traffic violations DMN custom data types in Business Central.</simpara>
+</listitem>
+</itemizedlist>
+<orderedlist numeration="arabic">
+<title>Procedure</title>
+<listitem>
+<simpara>Click the <emphasis role="strong">Model</emphasis> tab on the DMN designer and click <emphasis role="strong">Diagram properties</emphasis> in the top-right corner of the DMN designer to expose the DRD properties.</simpara>
+</listitem>
+<listitem>
+<simpara>In the DRD, select the <emphasis role="strong">Driver</emphasis> input data node and in the <emphasis role="strong">Diagram properties</emphasis> panel, set <emphasis role="strong">Data type</emphasis> to <literal>tDriver</literal>.</simpara>
+</listitem>
+<listitem>
+<simpara>Select the <emphasis role="strong">Violation</emphasis> input data node and set the <emphasis role="strong">Data type</emphasis> to <literal>tViolation</literal>.</simpara>
+</listitem>
+<listitem>
+<simpara>Select the <emphasis role="strong">Fine</emphasis> input data node and set the <emphasis role="strong">Data type</emphasis> to <literal>tFine</literal>.</simpara>
+</listitem>
+<listitem>
+<simpara>Select the <emphasis role="strong">Should the driver be suspended?</emphasis> decision node and set the following properties:</simpara>
+<itemizedlist>
+<listitem>
+<simpara><emphasis role="strong">Data type</emphasis>: <literal>string</literal></simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">Question</emphasis>: <literal>Should the driver be suspended due to points on his driver license?</literal></simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">Allowed Answers</emphasis>: <literal>"Yes","No"</literal></simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>Click <emphasis role="strong">Save</emphasis> to open the <emphasis role="strong">Confirm Save</emphasis> dialog box and click <emphasis role="strong">Save</emphasis> again.</simpara>
+</listitem>
+</orderedlist>
+<simpara>You have assigned the custom data types to your DRD’s input and decision nodes.</simpara>
+</section>
+<section xml:id="gs-dmn-gs-defining-decision-logic-proc">
+<title>Defining the traffic violations DMN decision logic</title>
+<simpara>To calculate the fine and to decide whether the driver is to be suspended or not, you can define the traffic violations DMN decision logic using a DMN decision table and context boxed expression.</simpara>
+<figure>
+<title>Fine decision table</title>
+<mediaobject>
+<imageobject>
+<imagedata fileref="images/_images/dmn/dmn-gs-fine-decision-table.png"/>
+</imageobject>
+<textobject><phrase>dmn gs fine decision table</phrase></textobject>
+</mediaobject>
+</figure>
+<figure>
+<title>Should the driver be suspended?</title>
+<mediaobject>
+<imageobject>
+<imagedata fileref="images/_images/dmn/dmn-gs-context-table.png"/>
+</imageobject>
+<textobject><phrase>dmn gs context table</phrase></textobject>
+</mediaobject>
+</figure>
+<itemizedlist>
+<title>Prerequisites</title>
+<listitem>
+<simpara>You have assigned the DMN custom data types to the appropriate decision and input nodes in the traffic violations DRD in Business Central.</simpara>
+</listitem>
+</itemizedlist>
+<orderedlist numeration="arabic">
+<title>Procedure</title>
+<listitem>
+<simpara>To calculate fine, in the DMN designer canvas, select the <emphasis role="strong">Fine</emphasis> decision node and click the <emphasis role="strong">Edit</emphasis> icon to open the DMN boxed expression designer.</simpara>
+</listitem>
+<listitem>
+<simpara>Click <emphasis role="strong">Select expression</emphasis> → <emphasis role="strong">Decision Table</emphasis>.</simpara>
+</listitem>
+<listitem>
+<simpara>For the <emphasis role="strong">Violation.Date</emphasis>, <emphasis role="strong">Violation.Code</emphasis>, and <emphasis role="strong">Violation.Speed Limit</emphasis> parameter fields, right-click and select <emphasis role="strong">Delete</emphasis> for each field.</simpara>
+</listitem>
+<listitem>
+<simpara>Click the <emphasis role="strong">Violation.Actual Speed</emphasis> column header and enter the expression <literal>Violation.Actual Speed - Violation.Speed Limit</literal> in the <emphasis role="strong">Name</emphasis> field.</simpara>
+</listitem>
+<listitem>
+<simpara>Right-click the <emphasis role="strong">Fine</emphasis> parameter field and select either <literal>Insert left</literal> or <literal>Insert right</literal>.</simpara>
+</listitem>
+<listitem>
+<simpara>Click the <emphasis role="strong">output-2</emphasis> column sub-header, enter <literal>Amount</literal> in the <emphasis role="strong">Name</emphasis> field, and select <literal>number</literal> from the <emphasis role="strong">Data Type</emphasis> field.</simpara>
+</listitem>
+<listitem>
+<simpara>Similarly, click the <emphasis role="strong">output-1</emphasis> column sub-header, enter <literal>Points</literal> in the <emphasis role="strong">Name</emphasis> field, and select <literal>number</literal> from the <emphasis role="strong">Data Type</emphasis> field.</simpara>
+</listitem>
+<listitem>
+<simpara>Next, enter the following values in the first row of the decision table:</simpara>
+<itemizedlist>
+<listitem>
+<simpara><emphasis role="strong">Violation.Type</emphasis>: <literal>"speed"</literal></simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">Violation.Actual Speed - Violation.Speed Limit</emphasis>: <literal>[10..30)</literal></simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">Amount</emphasis>: <literal>500</literal></simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">Points</emphasis>: <literal>3</literal></simpara>
+<simpara>Right-click the first row and select <literal>Insert below</literal> to add another row.</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>Enter the following values in the second row of the decision table:</simpara>
+<itemizedlist>
+<listitem>
+<simpara><emphasis role="strong">Violation.Type</emphasis>: <literal>"speed"</literal></simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">Violation.Actual Speed - Violation.Speed Limit</emphasis>: <literal>&gt;= 30</literal></simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">Amount</emphasis>: <literal>1000</literal></simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">Points</emphasis>: <literal>7</literal></simpara>
+<simpara>Right-click the second row and select <literal>Insert below</literal> to add another row.</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>Enter the following values in the third row of the decision table:</simpara>
+<itemizedlist>
+<listitem>
+<simpara><emphasis role="strong">Violation.Type</emphasis>: <literal>"parking"</literal></simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">Violation.Actual Speed - Violation.Speed Limit</emphasis>: <literal>-</literal></simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">Amount</emphasis>: <literal>100</literal></simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">Points</emphasis>: <literal>1</literal></simpara>
+<simpara>Right-click the third row and select <literal>Insert below</literal> to add another row.</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>Enter the following values in the fourth row of the decision table:</simpara>
+<itemizedlist>
+<listitem>
+<simpara><emphasis role="strong">Violation.Type</emphasis>: <literal>"driving under the influence"</literal></simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">Violation.Actual Speed - Violation.Speed Limit</emphasis>: <literal>-</literal></simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">Amount</emphasis>: <literal>1000</literal></simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">Points</emphasis>: <literal>5</literal></simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>Click <emphasis role="strong">Save</emphasis> to open the <emphasis role="strong">Confirm Save</emphasis> dialog box and click <emphasis role="strong">Save</emphasis> again.</simpara>
+</listitem>
+<listitem>
+<simpara>To define the driver suspension rule, return to the DMN designer canvas, select the <emphasis role="strong">Should the driver be suspended?</emphasis> decision node, and click the <emphasis role="strong">Edit</emphasis> icon to open the DMN boxed expression designer.</simpara>
+</listitem>
+<listitem>
+<simpara>Click <emphasis role="strong">Select expression</emphasis> → <emphasis role="strong">Context</emphasis>.</simpara>
+</listitem>
+<listitem>
+<simpara>Click <emphasis role="strong">ContextEntry-1</emphasis>, enter <literal>Total Points</literal> as the <emphasis role="strong">Name</emphasis>, and select <literal>number</literal> as the <emphasis role="strong">Data Type</emphasis>.</simpara>
+</listitem>
+<listitem>
+<simpara>Click the cell next to <emphasis role="strong">Total Points</emphasis>, select <literal>Literal Expression</literal> from the context menu, and enter <literal>Driver.Points + Fine.Points</literal> as the expression.</simpara>
+</listitem>
+<listitem>
+<simpara>In the cell below <emphasis role="strong">Driver.Points + Fine.Points</emphasis>, select <literal>Literal Expression</literal> from the context menu, and enter <literal>if Total Points &gt;= 20 then "Yes" else "No"</literal>.</simpara>
+</listitem>
+<listitem>
+<simpara>Click <emphasis role="strong">Save</emphasis> to open the <emphasis role="strong">Confirm Save</emphasis> dialog box and click <emphasis role="strong">Save</emphasis> again.</simpara>
+<simpara>You have defined how to calculate the fine and the context for deciding when to suspend the driver. You can navigate to the <emphasis role="strong">traffic-violation</emphasis> project page and click <emphasis role="strong">Build</emphasis> to build the example project and address any errors noted in the <emphasis role="strong">Alerts</emphasis> panel.</simpara>
+</listitem>
+</orderedlist>
+</section>
+</chapter>
+<chapter xml:id="gs-test-scenarios-intro-con">
+<title>Test scenarios</title>
+<simpara>Test scenarios in Red Hat Decision Manager enable you to validate the functionality of business rules and business rule data (for rules-based test scenarios) or of DMN models (for DMN-based test scenarios) before deploying them into a production environment. With a test scenario, you use data from your project to set given conditions and expected results based on one or more defined business rules. When you run the scenario, the expected results and actual results of the rule instance are compared. If the expected results match the actual results, the test is successful. If the expected results do not match the actual results, then the test fails.</simpara>
+<simpara>Red Hat Decision Manager currently supports both the new <emphasis role="strong">Test Scenarios</emphasis> designer and the former <emphasis role="strong">Test Scenarios (Legacy)</emphasis> designer. The default designer is the new test scenarios designer, which supports testing of both rules and DMN models and provides an enhanced overall user experience with test scenarios. If required, you can continue to use the legacy test scenarios designer, which supports rule-based test scenarios only.</simpara>
+<simpara>You can run the defined test scenarios in a number of ways, for example, you can run available test scenarios at the project level or inside a specific test scenario asset. Test scenarios are independent and cannot affect or modify other test scenarios. You can run test scenarios at any time during project development in Business Central. You do not have to compile or deploy your decision service to run test scenarios.</simpara>
+<simpara>You can import data objects from different packages to the same project package as the test scenario. Assets in the same package are imported by default. After you create the necessary data objects and the test scenario, you can use the <emphasis role="strong">Data Objects</emphasis> tab of the test scenarios designer to verify that all required data objects are listed or to import other existing data objects by adding a <emphasis role="strong">New item</emphasis>.</simpara>
+<important>
+<simpara>Throughout the test scenarios documentation, all references to <emphasis>test scenarios</emphasis> and the <emphasis>test scenarios designer</emphasis> are for the new version, unless explicitly noted as the legacy version.</simpara>
+</important>
+<section xml:id="gs-dmn-gs-testing-test-scenario-proc">
+<title>Testing the traffic violations using test scenarios</title>
+<simpara>Use the test scenarios designer in Business Central to test the DMN decision requirements diagrams (DRDs) and define decision logic for the traffic violations project.</simpara>
+<figure>
+<title>Test scenario for the traffic violations example</title>
+<mediaobject>
+<imageobject>
+<imagedata fileref="images/_images/dmn/dmn-gs-traffic-violation-test-scenarios.png"/>
+</imageobject>
+<textobject><phrase>dmn gs traffic violation test scenarios</phrase></textobject>
+</mediaobject>
+</figure>
+<itemizedlist>
+<title>Prerequisites</title>
+<listitem>
+<simpara>You have successfully built the traffic violations project in Business Central.</simpara>
+</listitem>
+</itemizedlist>
+<orderedlist numeration="arabic">
+<title>Procedure</title>
+<listitem>
+<simpara>On the <emphasis role="strong">traffic-violation</emphasis> project’s home screen, click <emphasis role="strong">Add Asset</emphasis> to open the <emphasis role="strong">Add Asset</emphasis> screen.</simpara>
+</listitem>
+<listitem>
+<simpara>Click <emphasis role="strong">Test Scenario</emphasis> to open the <emphasis role="strong">Create new Test Scenario</emphasis> dialog.</simpara>
+<orderedlist numeration="loweralpha">
+<listitem>
+<simpara>Enter <literal>Violation Scenarios</literal> in the <emphasis role="strong">Test Scenario</emphasis> field.</simpara>
+</listitem>
+<listitem>
+<simpara>From the <emphasis role="strong">Package</emphasis> list, select <literal>org.kie.example.traffic.traffic_violations</literal>.</simpara>
+</listitem>
+<listitem>
+<simpara>Select <literal>DMN</literal> as the <emphasis role="strong">Source type</emphasis>.</simpara>
+</listitem>
+<listitem>
+<simpara>Click the <emphasis role="strong">Choose DMN asset</emphasis> text field and select the path to the DMN asset.</simpara>
+</listitem>
+<listitem>
+<simpara>Click <emphasis role="strong">Ok</emphasis> to open the <emphasis role="strong">Violation Scenarios</emphasis> test scenario in the <emphasis role="strong">Test Scenarios</emphasis> designer.</simpara>
+</listitem>
+</orderedlist>
+</listitem>
+<listitem>
+<simpara>Under <emphasis role="strong">Driver</emphasis> column sub-header, right-click the <emphasis role="strong">State</emphasis>, <emphasis role="strong">City</emphasis>, <emphasis role="strong">Age</emphasis>, and <emphasis role="strong">Name</emphasis> value cells and select <emphasis role="strong">Delete column</emphasis> from the context menu options to remove them.</simpara>
+</listitem>
+<listitem>
+<simpara>Under <emphasis role="strong">Violation</emphasis> column sub-header, right-click the <emphasis role="strong">Date</emphasis> and <emphasis role="strong">Code</emphasis> value cells and select <emphasis role="strong">Delete column</emphasis> to remove them.</simpara>
+</listitem>
+<listitem>
+<simpara>Enter the following information in the first row of the test scenarios:</simpara>
+<itemizedlist>
+<listitem>
+<simpara><emphasis role="strong">Scenario description</emphasis>: <literal>Above speed limit: 10km/h and 30 km/h</literal></simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">Points</emphasis> (under <emphasis role="strong">Given</emphasis> column header): <literal>10</literal></simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">Type</emphasis>: <literal>"speed"</literal></simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">Speed Limit</emphasis>: <literal>100</literal></simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">Actual Speed</emphasis>: <literal>120</literal></simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">Points</emphasis> (under <emphasis role="strong">Expect</emphasis> column header): <literal>3</literal></simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">Amount</emphasis>: <literal>500</literal></simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">Should the driver be suspended?</emphasis>: <literal>"No"</literal></simpara>
+<simpara>Right-click the first row and select <emphasis role="strong">Insert row below</emphasis> to add another row.</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>Enter the following information in the second row of the test scenarios:</simpara>
+<itemizedlist>
+<listitem>
+<simpara><emphasis role="strong">Scenario description</emphasis>: <literal>Above speed limit: more than 30 km/h</literal></simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">Points</emphasis> (under <emphasis role="strong">Given</emphasis> column header): <literal>10</literal></simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">Type</emphasis>: <literal>"speed"</literal></simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">Speed Limit</emphasis>: <literal>100</literal></simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">Actual Speed</emphasis>: <literal>150</literal></simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">Points</emphasis> (under <emphasis role="strong">Expect</emphasis> column header): <literal>7</literal></simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">Amount</emphasis>: <literal>1000</literal></simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">Should the driver be suspended?</emphasis>: <literal>"No"</literal></simpara>
+<simpara>Right-click the second row and select <emphasis role="strong">Insert row below</emphasis> to add another row.</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>Enter the following information in the third row of the test scenarios:</simpara>
+<itemizedlist>
+<listitem>
+<simpara><emphasis role="strong">Scenario description</emphasis>: <literal>Parking violation</literal></simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">Points</emphasis> (under <emphasis role="strong">Given</emphasis> column header): <literal>10</literal></simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">Type</emphasis>: <literal>"parking"</literal></simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">Speed Limit</emphasis>: leave blank</simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">Actual Speed</emphasis>: leave blank</simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">Points</emphasis> (under <emphasis role="strong">Expect</emphasis> column header): <literal>1</literal></simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">Amount</emphasis>: <literal>100</literal></simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">Should the driver be suspended?</emphasis>: <literal>"No"</literal></simpara>
+<simpara>Right-click the third row and select <emphasis role="strong">Insert row below</emphasis> to add another row.</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>Enter the following information in the fourth row of the test scenarios:</simpara>
+<itemizedlist>
+<listitem>
+<simpara><emphasis role="strong">Scenario description</emphasis>: <literal>DUI violation</literal></simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">Points</emphasis> (under <emphasis role="strong">Given</emphasis> column header): <literal>10</literal></simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">Type</emphasis>: <literal>"driving under the influence"</literal></simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">Speed Limit</emphasis>: leave blank</simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">Actual Speed</emphasis>: leave blank</simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">Points</emphasis> (under <emphasis role="strong">Expect</emphasis> column header): <literal>5</literal></simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">Amount</emphasis>: <literal>1000</literal></simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">Should the driver be suspended?</emphasis>: <literal>"No"</literal></simpara>
+<simpara>Right-click the fourth row and select <emphasis role="strong">Insert row below</emphasis> to add another row.</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>Enter the following information in the fifth row of the test scenarios:</simpara>
+<itemizedlist>
+<listitem>
+<simpara><emphasis role="strong">Scenario description</emphasis>: <literal>Driver suspended</literal></simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">Points</emphasis> (under <emphasis role="strong">Given</emphasis> column header): <literal>15</literal></simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">Type</emphasis>: <literal>"speed"</literal></simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">Speed Limit</emphasis>: <literal>100</literal></simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">Actual Speed</emphasis>: <literal>140</literal></simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">Points</emphasis> (under <emphasis role="strong">Expect</emphasis> column header): <literal>7</literal></simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">Amount</emphasis>: <literal>1000</literal></simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">Should the driver be suspended?</emphasis>: <literal>"Yes"</literal></simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>Click <emphasis role="strong">Save</emphasis> to open the <emphasis role="strong">Confirm Save</emphasis> dialog box and click <emphasis role="strong">Save</emphasis> again.</simpara>
+</listitem>
+<listitem>
+<simpara>Click the play button to check whether the test scenarios pass or fail.</simpara>
+<figure>
+<title>Test scenario execution result for the traffic violations example</title>
+<mediaobject>
+<imageobject>
+<imagedata fileref="images/_images/dmn/dmn-gs-test-scenarios-execution-results.png"/>
+</imageobject>
+<textobject><phrase>dmn gs test scenarios execution results</phrase></textobject>
+</mediaobject>
+</figure>
+<simpara>In case of failure, correct the errors and run the test scenarios again.</simpara>
+</listitem>
+</orderedlist>
+</section>
+</chapter>
+<chapter xml:id="ds-dmn-execution-con">
+<title>DMN model execution</title>
+<simpara>You can create or import DMN files in your Red Hat Decision Manager project using Business Central or package the DMN files as part of your project knowledge JAR (KJAR) file without Business Central. After you implement your DMN files in your Red Hat Decision Manager project, you can execute the DMN decision service by deploying the KIE container that contains it to Decision Server for remote access
+or by manipulating the KIE container directly as a dependency of the calling application. Other options for creating and deploying DMN knowledge packages are also available, and most are similar for all types of knowledge assets, such as DRL files or process definitions.</simpara>
+<simpara>For information about including external DMN assets with your project packaging and deployment method, see
+<link xlink:href="https://access.redhat.com/documentation/en-us/red_hat_decision_manager/7.5/html-single/packaging_and_deploying_a_red_hat_decision_manager_project"><emphasis>Packaging and deploying a Red Hat Decision Manager project</emphasis></link>.</simpara>
+<section xml:id="ds-dmn-execution-rest-proc">
+<title>Executing a DMN service using the Decision Server REST API</title>
+<simpara>Directly interacting with the REST endpoints of Decision Server provides the most separation between the calling code and the decision logic definition. The calling code is completely free of direct dependencies, and you can implement it in an entirely different development platform such as <literal>node.js</literal> or <literal>.net</literal>. The examples in this section demonstrate Nix-style curl commands but provide relevant information to adapt to any REST client.</simpara>
+<simpara>For more information about the Decision Server REST API, see
+<link xlink:href="https://access.redhat.com/documentation/en-us/red_hat_decision_manager/7.5/html-single/interacting_with_red_hat_decision_manager_using_kie_apis"><emphasis>Interacting with Red Hat Decision Manager using KIE APIs</emphasis></link>.</simpara>
+<itemizedlist>
+<title>Prerequisites</title>
+<listitem>
+<simpara>Decision Server is installed and configured, including a known user name and credentials for a user with the <literal>kie-server</literal> role. For installation options, see
+<link xlink:href="https://access.redhat.com/documentation/en-us/red_hat_decision_manager/7.5/html-single/planning_a_red_hat_decision_manager_installation"><emphasis>Planning a Red Hat Decision Manager installation</emphasis></link>.</simpara>
+</listitem>
+<listitem>
+<simpara>A KIE container is deployed in Decision Server in the form of a KJAR that includes the DMN model, ideally compiled as an executable model for more efficient execution:</simpara>
+<screen>mvn clean install -DgenerateDMNModel=yes</screen>
+<simpara>For more information about project packaging and deployment and executable models, see
+<link xlink:href="https://access.redhat.com/documentation/en-us/red_hat_decision_manager/7.5/html-single/packaging_and_deploying_a_red_hat_decision_manager_project"><emphasis>Packaging and deploying a Red Hat Decision Manager project</emphasis></link>.</simpara>
+</listitem>
+<listitem>
+<simpara>You have the container ID of the KIE container containing the DMN model. If more than one model is present, you must also know the model namespace and model name of the relevant model.</simpara>
+</listitem>
+<listitem>
+<simpara>You have the DMN model deployed. For more information about project deployment, see
+<link xlink:href="https://access.redhat.com/documentation/en-us/red_hat_decision_manager/7.5/html-single/packaging_and_deploying_a_red_hat_decision_manager_project#project-build-deploy-central-proc_packaging-deploying"><emphasis>Packaging and deploying a Red Hat Decision Manager project</emphasis></link>.</simpara>
+</listitem>
+</itemizedlist>
+<orderedlist numeration="arabic">
+<title>Procedure</title>
+<listitem>
+<simpara>Determine the base URL for accessing the Decision Server REST API endpoints. This requires knowing the following values (with the default local deployment values as an example):</simpara>
+<itemizedlist>
+<listitem>
+<simpara>Host (<literal>localhost</literal>)</simpara>
+</listitem>
+<listitem>
+<simpara>Port (<literal>8080</literal>)</simpara>
+</listitem>
+<listitem>
+<simpara>Root context (<literal>kie-server</literal>)</simpara>
+</listitem>
+<listitem>
+<simpara>Base REST path (<literal>services/rest/</literal>)</simpara>
+</listitem>
+</itemizedlist>
+<simpara>Example base URL in local deployment:</simpara>
+<simpara><literal>http://localhost:8080/kie-server/services/rest/</literal></simpara>
+</listitem>
+<listitem>
+<simpara>Determine user authentication requirements.</simpara>
+<simpara>When users are defined directly in the Decision Server configuration, HTTP Basic authentication is used and requires the user name and password. Successful requests require that the user have the <literal>kie-server</literal> role.</simpara>
+<simpara>The following example demonstrates how to add credentials to a curl request:</simpara>
+<screen>curl -u username:password &lt;request&gt;</screen>
+<simpara>If Decision Server is configured with Red Hat Single Sign-On, the request must include a bearer token:</simpara>
+<programlisting language="java" linenumbering="unnumbered">curl -H "Authorization: bearer $TOKEN" &lt;request&gt;</programlisting>
+</listitem>
+<listitem>
+<simpara>Specify the format of the request and response. The REST API endpoints work with both JSON and XML formats and are set using request headers:</simpara>
+<formalpara>
+<title>JSON</title>
+<para>
+<screen>curl -H "accept: application/json" -H "content-type: application/json"</screen>
+</para>
+</formalpara>
+<formalpara>
+<title>XML</title>
+<para>
+<screen>curl -H "accept: application/xml" -H "content-type: application/xml"</screen>
+</para>
+</formalpara>
+</listitem>
+<listitem>
+<simpara>(Optional) Query the container for a list of deployed decision models:</simpara>
+<simpara><emphasis role="strong">[GET]</emphasis> <literal>server/containers/{containerId}/dmn</literal></simpara>
+<simpara>Example curl request:</simpara>
+<screen>curl -u krisv:krisv -H "accept: application/xml" -X GET "http://localhost:8080/kie-server/services/rest/server/containers/MovieDMNContainer/dmn"</screen>
+<simpara>Sample XML output:</simpara>
+<programlisting language="xml" linenumbering="unnumbered">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;
+&lt;response type="SUCCESS" msg="OK models successfully retrieved from container 'MovieDMNContainer'"&gt;
+    &lt;dmn-model-info-list&gt;
+        &lt;model&gt;
+            &lt;model-namespace&gt;http://www.redhat.com/_c7328033-c355-43cd-b616-0aceef80e52a&lt;/model-namespace&gt;
+            &lt;model-name&gt;dmn-movieticket-ageclassification&lt;/model-name&gt;
+            &lt;model-id&gt;_99&lt;/model-id&gt;
+            &lt;decisions&gt;
+                &lt;dmn-decision-info&gt;
+                    &lt;decision-id&gt;_3&lt;/decision-id&gt;
+                    &lt;decision-name&gt;AgeClassification&lt;/decision-name&gt;
+                &lt;/dmn-decision-info&gt;
+            &lt;/decisions&gt;
+        &lt;/model&gt;
+    &lt;/dmn-model-info-list&gt;
+&lt;/response&gt;</programlisting>
+<simpara>Sample JSON output:</simpara>
+<programlisting language="json" linenumbering="unnumbered">{
+  "type" : "SUCCESS",
+  "msg" : "OK models successfully retrieved from container 'MovieDMNContainer'",
+  "result" : {
+    "dmn-model-info-list" : {
+      "models" : [ {
+        "model-namespace" : "http://www.redhat.com/_c7328033-c355-43cd-b616-0aceef80e52a",
+        "model-name" : "dmn-movieticket-ageclassification",
+        "model-id" : "_99",
+        "decisions" : [ {
+          "decision-id" : "_3",
+          "decision-name" : "AgeClassification"
+        } ]
+      } ]
+    }
+  }
+}</programlisting>
+</listitem>
+<listitem>
+<simpara>Execute the model:</simpara>
+<simpara><emphasis role="strong">[POST]</emphasis> <literal>server/containers/{containerId}/dmn</literal></simpara>
+<simpara>Example curl request:</simpara>
+<screen>curl -u krisv:krisv -H "accept: application/json" -H "content-type: application/json" -X POST "http://localhost:8080/kie-server/services/rest/server/containers/MovieDMNContainer/dmn" -d "{ \"model-namespace\" : \"http://www.redhat.com/_c7328033-c355-43cd-b616-0aceef80e52a\", \"model-name\" : \"dmn-movieticket-ageclassification\", \"decision-name\" : [ ], \"decision-id\" : [ ], \"dmn-context\" : {\"Age\" : 66}}"</screen>
+<simpara>Example JSON request:</simpara>
+<programlisting language="json" linenumbering="unnumbered">{
+  "model-namespace" : "http://www.redhat.com/_c7328033-c355-43cd-b616-0aceef80e52a",
+  "model-name" : "dmn-movieticket-ageclassification",
+  "decision-name" : [ ],
+  "decision-id" : [ ],
+  "dmn-context" : {"Age" : 66}
+}</programlisting>
+<simpara>Example XML request (JAXB format):</simpara>
+<programlisting language="xml" linenumbering="unnumbered">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;dmn-evaluation-context&gt;
+    &lt;model-namespace&gt;http://www.redhat.com/_c7328033-c355-43cd-b616-0aceef80e52a&lt;/model-namespace&gt;
+    &lt;model-name&gt;dmn-movieticket-ageclassification&lt;/model-name&gt;
+    &lt;dmn-context xsi:type="jaxbListWrapper" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&gt;
+        &lt;type&gt;MAP&lt;/type&gt;
+        &lt;element xsi:type="jaxbStringObjectPair" key="Age"&gt;
+            &lt;value xsi:type="xs:int" xmlns:xs="http://www.w3.org/2001/XMLSchema"&gt;66&lt;/value&gt;
+        &lt;/element&gt;
+    &lt;/dmn-context&gt;
+&lt;/dmn-evaluation-context&gt;</programlisting>
+<note>
+<simpara>Regardless of the request format, the request requires the following elements:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>Model namespace</simpara>
+</listitem>
+<listitem>
+<simpara>Model name</simpara>
+</listitem>
+<listitem>
+<simpara>Context object containing input values</simpara>
+</listitem>
+</itemizedlist>
+</note>
+<simpara>Example JSON response:</simpara>
+<programlisting language="json" linenumbering="unnumbered">{
+  "type" : "SUCCESS",
+  "msg" : "OK from container 'MovieDMNContainer'",
+  "result" : {
+    "dmn-evaluation-result" : {
+      "messages" : [ ],
+      "model-namespace" : "http://www.redhat.com/_c7328033-c355-43cd-b616-0aceef80e52a",
+      "model-name" : "dmn-movieticket-ageclassification",
+      "decision-name" : [ ],
+      "dmn-context" : {
+        "Age" : 66,
+        "AgeClassification" : "Senior"
+      },
+      "decision-results" : {
+        "_3" : {
+          "messages" : [ ],
+          "decision-id" : "_3",
+          "decision-name" : "AgeClassification",
+          "result" : "Senior",
+          "status" : "SUCCEEDED"
+        }
+      }
+    }
+  }
+}</programlisting>
+<simpara>Example XML (JAXB format) response:</simpara>
+<programlisting language="xml" linenumbering="unnumbered">&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;
+&lt;response type="SUCCESS" msg="OK from container 'MovieDMNContainer'"&gt;
+      &lt;dmn-evaluation-result&gt;
+            &lt;model-namespace&gt;http://www.redhat.com/_c7328033-c355-43cd-b616-0aceef80e52a&lt;/model-namespace&gt;
+            &lt;model-name&gt;dmn-movieticket-ageclassification&lt;/model-name&gt;
+            &lt;dmn-context xsi:type="jaxbListWrapper" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&gt;
+                  &lt;type&gt;MAP&lt;/type&gt;
+                  &lt;element xsi:type="jaxbStringObjectPair" key="Age"&gt;
+                        &lt;value xsi:type="xs:int" xmlns:xs="http://www.w3.org/2001/XMLSchema"&gt;66&lt;/value&gt;
+                  &lt;/element&gt;
+                  &lt;element xsi:type="jaxbStringObjectPair" key="AgeClassification"&gt;
+                        &lt;value xsi:type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema"&gt;Senior&lt;/value&gt;
+                  &lt;/element&gt;
+            &lt;/dmn-context&gt;
+            &lt;messages/&gt;
+            &lt;decisionResults&gt;
+                  &lt;entry&gt;
+                        &lt;key&gt;_3&lt;/key&gt;
+                        &lt;value&gt;
+                              &lt;decision-id&gt;_3&lt;/decision-id&gt;
+                              &lt;decision-name&gt;AgeClassification&lt;/decision-name&gt;
+                              &lt;result xsi:type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&gt;Senior&lt;/result&gt;
+                              &lt;messages/&gt;
+                              &lt;status&gt;SUCCEEDED&lt;/status&gt;
+                        &lt;/value&gt;
+                  &lt;/entry&gt;
+            &lt;/decisionResults&gt;
+      &lt;/dmn-evaluation-result&gt;
+&lt;/response&gt;</programlisting>
+</listitem>
+</orderedlist>
+</section>
+</chapter>
+<chapter xml:id="additional_resources" remap="_additional_resources">
+<title>Additional resources</title>
+<itemizedlist>
+<listitem>
+<simpara><link xlink:href="https://www.omg.org/spec/DMN">Decision Model and Notation specification</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xlink:href="https://dmn-tck.github.io/tck/">DMN Technology Compatibility Kit</link></simpara>
+</listitem>
+<listitem>
+<simpara><link xlink:href="https://access.redhat.com/documentation/en-us/red_hat_decision_manager/7.5/html-single/packaging_and_deploying_a_red_hat_decision_manager_project"><emphasis>Packaging and deploying a Red Hat Decision Manager project</emphasis></link></simpara>
+</listitem>
+<listitem>
+<simpara><link xlink:href="https://access.redhat.com/documentation/en-us/red_hat_decision_manager/7.5/html-single/interacting_with_red_hat_decision_manager_using_kie_apis"><emphasis>Interacting with Red Hat Decision Manager using KIE APIs</emphasis></link></simpara>
+</listitem>
+</itemizedlist>
+</chapter>
+<appendix xml:id="versioning-information">
+<title>Versioning information</title>
+<simpara>Documentation last updated on Monday, August 12, 2019.</simpara>
+</appendix>
+</book>

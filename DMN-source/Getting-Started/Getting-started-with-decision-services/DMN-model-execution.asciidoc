@@ -1,0 +1,10 @@
+[id='gs-dmn-execution-con']
+
+:replaceWith: ds-dmn-execution-con.asciidoc
+link:https://github.com/manaswinidas/DMN/wiki/DMN-model-execution[DMN Model Execution]
+
+[id='gs-dmn-execution-rest-proc']
+
+:replaceWith: ds-dmn-execution-rest-proc.asciidoc
+
+link:https://github.com/manaswinidas/DMN/wiki/DMN-model-execution[DMN Model Execution]

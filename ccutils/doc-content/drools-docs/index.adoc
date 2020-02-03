@@ -1,0 +1,28 @@
+:DROOLS:
+include::{artifact-dir}/document-attributes.adoc[]
+
+= {PRODUCT} Documentation
+The {PRODUCT} Team <https://www.drools.org/community/team.html>
+:doctype: book
+:title-logo-image: image:logos/droolsExpertLogo.png[align="center"]
+:toc: left
+:toclevels: 3
+:sectnums:
+:sectanchors:
+:sectlinks:
+:sectnumlevels: 4
+:icons: font
+:docinfo:
+:experimental:
+
+// PDF uses :title-logo-image: on first page, no need to repeat image later on
+ifndef::backend-pdf[]
+image::logos/droolsExpertLogo.png[align="center"]
+endif::[]
+
+[discrete]
+= Welcome
+
+include::{shared-dir}/Welcome-chapter.adoc[leveloffset=+1]
+
+include::DMN-chapter.adoc[leveloffset=+1]

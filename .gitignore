@@ -1,0 +1,5 @@
+.project
+.settings/
+.history/
+ccutils/doc-content/drools-docs/DMN/
+ccutils/assemblies/assembly_dmn-models/dm/build/tmp/en-US/html-single/node_modules
