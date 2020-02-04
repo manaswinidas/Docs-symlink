@@ -1,6 +1,7 @@
 [[drools.DMN]]
 = Decision Model and Notation (DMN)
 :context: dmn-models
+:imagesdir: ..
 
 // include::DMN/dmn-con.asciidoc[leveloffset=+1]
 
