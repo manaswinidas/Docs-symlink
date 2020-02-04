@@ -1,4 +1,5 @@
-:imagesdir: ../../../
+[[Test scenarios]]
+:imagesdir: ../
 [id='gs-test-scenarios-intro-con']
 = Test scenarios
 :leveloffset: 1
