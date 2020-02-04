@@ -61,12 +61,12 @@
 
 // include::DMN/dmn-execution-rest-proc.asciidoc[leveloffset=+2]
 
-include::DMN/Getting-Started/Getting-started-with-decision-services/Example-projects-and-business-assets-in-Business-Central.asciidoc[leveloffset=+1]
+include::DMN-source/Getting-Started/Getting-started-with-decision-services/Example-projects-and-business-assets-in-Business-Central.asciidoc[leveloffset=+1]
 
-include::DMN/Getting-Started/Getting-started-with-decision-services/Creating-the-traffic-violations-project.asciidoc[leveloffset=+1]
+include::DMN-source/Getting-Started/Getting-started-with-decision-services/Creating-the-traffic-violations-project.asciidoc[leveloffset=+1]
 
-include::DMN/Getting-Started/Getting-started-with-decision-services/Decision-Model-and-Notation(DMN).asciidoc[leveloffset=+1]
+include::DMN-source/Getting-Started/Getting-started-with-decision-services/Decision-Model-and-Notation(DMN).asciidoc[leveloffset=+1]
 
-include::DMN/Getting-Started/Getting-started-with-decision-services/Test-scenarios.asciidoc[leveloffset=+1]
+include::DMN-source/Getting-Started/Getting-started-with-decision-services/Test-scenarios.asciidoc[leveloffset=+1]
 
-include::DMN/Getting-Started/Getting-started-with-decision-services/DMN-model-execution.asciidoc[leveloffset=+1]
+include::DMN-source/Getting-Started/Getting-started-with-decision-services/DMN-model-execution.asciidoc[leveloffset=+1]
