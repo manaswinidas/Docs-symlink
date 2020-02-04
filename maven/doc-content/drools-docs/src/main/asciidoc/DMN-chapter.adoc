@@ -60,10 +60,12 @@
 
 // include::DMN/dmn-execution-rest-proc.asciidoc[leveloffset=+2]
 
-include::DMN/Authorising-Rules/Designing-a-decision-service-using-DMN-models/Decision-Model-and-Notation-DMN/Decision-Model-and-Notation-DMN.asciidoc[leveloffset=+1]
+include::DMN/Getting-Started/Getting-started-with-decision-services/Example-projects-and-business-assets-in-Business-Central.asciidoc[leveloffset=+1]
 
-include::DMN/Authorising-Rules/Designing-a-decision-service-using-DMN-models/Decision-Model-and-Notation-DMN/DMN-support-in-Red-Hat-Decision-Manager.asciidoc[leveloffset=+1]
+include::DMN/Getting-Started/Getting-started-with-decision-services/Creating-the-traffic-violations-project.asciidoc[leveloffset=+1]
 
-include::DMN/Authorising-Rules/Designing-a-decision-service-using-DMN-models/Decision-Model-and-Notation-DMN/Creating-and-editing-DMN-models-in-Business-Central.asciidoc[leveloffset=+1]
+include::DMN/Getting-Started/Getting-started-with-decision-services/Decision-Model-and-Notation(DMN).asciidoc[leveloffset=+1]
 
-include::DMN/Authorising-Rules/Designing-a-decision-service-using-DMN-models/Decision-Model-and-Notation-DMN/DMN-model-execution.asciidoc[leveloffset=+1]
+include::DMN/Getting-Started/Getting-started-with-decision-services/Test-scenarios.asciidoc[leveloffset=+1]
+
+include::DMN/Getting-Started/Getting-started-with-decision-services/DMN-model-execution.asciidoc[leveloffset=+1]
