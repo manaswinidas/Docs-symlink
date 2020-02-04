@@ -1,3 +1,4 @@
+:imagesdir: ..
 [id='gs-dmn-gs-new-project-creating-proc']
 = Creating the traffic violations project
 :leveloffset: 1
