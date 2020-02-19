@@ -25,7 +25,7 @@ image:: DMN-source/Getting-Started/Getting-started-with-decision-services/spaces
 +
 
 .Add Project window with expanded Advanced Options
-image::dmn-new-project-gs.png[]
+image::DMN-source/Getting-Started/Getting-started-with-decision-services/dmn-new-project-gs.png[]
 +
 The *Assets* view of the project opens.
 
