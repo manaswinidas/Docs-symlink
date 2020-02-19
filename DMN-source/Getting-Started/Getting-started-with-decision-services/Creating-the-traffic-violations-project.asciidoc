@@ -1,6 +1,7 @@
+:imagesdir: ../../..
 [id='gs-dmn-gs-new-project-creating-proc']
 = Creating the traffic violations project
-:leveloffset: 1
+:leveloffset: +1
 For this example, create a new project called `traffic-violation`. A project is a container for assets such as data objects, DMN assets, and test scenarios. This example project that you are creating is similar to the existing *Traffic_Violation* sample project in {CENTRAL}.
 
 .Procedure
@@ -12,7 +13,7 @@ For this example, create a new project called `traffic-violation`. A project is 
 +
 
 .Default space
-image::spaces-teams.png[]
+image:: DMN-source/Getting-Started/Getting-started-with-decision-services/spaces-teams.png[]
 
 . Click *Add Project*.
 . Enter `traffic-violation` in the *Name* field.

@@ -1,7 +1,6 @@
-:imagesdir: ..
 [id='gs-test-scenarios-intro-con']
 = Test scenarios
-:leveloffset: 1
+:leveloffset: +1
 Test scenarios in {PRODUCT} enable you to validate the functionality of business rules and business rule data (for rules-based test scenarios) or of DMN models (for DMN-based test scenarios) before deploying them into a production environment. With a test scenario, you use data from your project to set given conditions and expected results based on one or more defined business rules. When you run the scenario, the expected results and actual results of the rule instance are compared. If the expected results match the actual results, the test is successful. If the expected results do not match the actual results, then the test fails.
 
 {PRODUCT} currently supports both the new *Test Scenarios* designer and the former *Test Scenarios (Legacy)* designer. The default designer is the new test scenarios designer, which supports testing of both rules and DMN models and provides an enhanced overall user experience with test scenarios. If required, you can continue to use the legacy test scenarios designer, which supports rule-based test scenarios only.
@@ -14,7 +13,7 @@ IMPORTANT: Throughout the test scenarios documentation, all references to _test 
 
 [id='gs-dmn-gs-testing-test-scenario-proc']
 = Testing the traffic violations using test scenarios
-:leveloffset: 2
+:leveloffset: +2
 Use the test scenarios designer in {CENTRAL} to test the DMN decision requirements diagrams (DRDs) and define decision logic for the traffic violations project.
 
 .Test scenario for the traffic violations example

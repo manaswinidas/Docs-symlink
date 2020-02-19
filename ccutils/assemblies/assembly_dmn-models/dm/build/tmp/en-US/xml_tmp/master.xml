@@ -10,7 +10,7 @@
 <title>Designing a decision service using DMN models</title><subtitle>
 </subtitle>
 
-<date>2020-01-31</date>
+<date>2020-02-18</date>
 <productname>Red Hat Decision Manager</productname>
 <productnumber>7.5</productnumber>
 <abstract>
@@ -95,62 +95,6 @@ assets and logic in Red Hat Decision Manager.</simpara>
 </orderedlist>
 </section>
 </chapter>
-<chapter xml:id="gs-dmn-gs-new-project-creating-proc">
-<title>Creating the traffic violations project</title>
-<simpara>For this example, create a new project called <literal>traffic-violation</literal>. A project is a container for assets such as data objects, DMN assets, and test scenarios. This example project that you are creating is similar to the existing <emphasis role="strong">Traffic_Violation</emphasis> sample project in Business Central.</simpara>
-<orderedlist numeration="arabic">
-<title>Procedure</title>
-<listitem>
-<simpara>Log in to Business Central.</simpara>
-</listitem>
-<listitem>
-<simpara>Go to <emphasis role="strong">Menu</emphasis> → <emphasis role="strong">Design</emphasis> → <emphasis role="strong">Projects</emphasis>.</simpara>
-<simpara>Red Hat Decision Manager provides a default space called <emphasis role="strong">MySpace</emphasis>, as shown in the following image. You can use the default space to create and test example projects.</simpara>
-<figure>
-<title>Default space</title>
-<mediaobject>
-<imageobject>
-<imagedata fileref="images/_images/getting-started/spaces-teams.png"/>
-</imageobject>
-<textobject><phrase>spaces teams</phrase></textobject>
-</mediaobject>
-</figure>
-</listitem>
-<listitem>
-<simpara>Click <emphasis role="strong">Add Project</emphasis>.</simpara>
-</listitem>
-<listitem>
-<simpara>Enter <literal>traffic-violation</literal> in the <emphasis role="strong">Name</emphasis> field.</simpara>
-</listitem>
-<listitem>
-<simpara>Click <emphasis role="strong">Configure Advanced Options</emphasis> to expand the GAV fields and enter the following values:</simpara>
-<itemizedlist>
-<listitem>
-<simpara><emphasis role="strong">Group ID</emphasis>: <literal>org.kie.example.traffic</literal></simpara>
-</listitem>
-<listitem>
-<simpara><emphasis role="strong">Artifact ID</emphasis>: <literal>traffic-violation</literal></simpara>
-</listitem>
-<listitem>
-<simpara><emphasis role="strong">Version</emphasis>: <literal>1.0.0</literal></simpara>
-</listitem>
-</itemizedlist>
-</listitem>
-<listitem>
-<simpara>Click <emphasis role="strong">Add</emphasis>.</simpara>
-<figure>
-<title>Add Project window with expanded Advanced Options</title>
-<mediaobject>
-<imageobject>
-<imagedata fileref="images/_images/dmn/dmn-new-project-gs.png"/>
-</imageobject>
-<textobject><phrase>dmn new project gs</phrase></textobject>
-</mediaobject>
-</figure>
-<simpara>The <emphasis role="strong">Assets</emphasis> view of the project opens.</simpara>
-</listitem>
-</orderedlist>
-</chapter>
 <chapter xml:id="ds-dmn-con_dmn-models">
 <title>Decision Model and Notation (DMN)</title>
 <simpara>Decision Model and Notation (DMN) is a standard established by the Object Management Group (OMG) for describing and modeling operational decisions. DMN defines an XML schema that enables DMN models to be shared between DMN-compliant platforms and across organizations so that business analysts and business rules developers can collaborate in designing and implementing DMN decision services. The DMN standard is similar to and can be used together with the Business Process Model and Notation (BPMN) standard for designing and modeling business processes.</simpara>
@@ -162,7 +106,7 @@ assets and logic in Red Hat Decision Manager.</simpara>
 <title>DRD for the Traffic Violations example</title>
 <mediaobject>
 <imageobject>
-<imagedata fileref="images/_images/dmn/dmn-traffic-violations-drd.png"/>
+<imagedata fileref="images/_images/DMN-source/Getting-Started/Getting-started-with-decision-services/dmn-traffic-violations-drd.png"/>
 </imageobject>
 <textobject><phrase>dmn traffic violations drd</phrase></textobject>
 </mediaobject>
@@ -231,7 +175,7 @@ assets and logic in Red Hat Decision Manager.</simpara>
 <title>The custom data types tab</title>
 <mediaobject>
 <imageobject>
-<imagedata fileref="images/_images/dmn/dmn-custom-datatypes-tab.png"/>
+<imagedata fileref="images/_images/DMN-source/Getting-Started/Getting-started-with-decision-services/dmn-custom-datatypes-tab.png"/>
 </imageobject>
 <textobject><phrase>dmn custom datatypes tab</phrase></textobject>
 </mediaobject>
@@ -241,7 +185,7 @@ assets and logic in Red Hat Decision Manager.</simpara>
 <title>Diagram properties tab</title>
 <mediaobject>
 <imageobject>
-<imagedata fileref="images/_images/dmn/dmn-diagram-properties-tab.png"/>
+<imagedata fileref="images/_images/DMN-source/Getting-Started/Getting-started-with-decision-services/dmn-diagram-properties-tab.png"/>
 </imageobject>
 <textobject><phrase>dmn diagram properties tab</phrase></textobject>
 </mediaobject>
@@ -366,7 +310,7 @@ assets and logic in Red Hat Decision Manager.</simpara>
 <title>The tDriver custom data type</title>
 <mediaobject>
 <imageobject>
-<imagedata fileref="images/_images/dmn/dmn-tDriver-custom-datatype.png"/>
+<imagedata fileref="images/_images/DMN-source/Getting-Started/Getting-started-with-decision-services/dmn-tDriver-custom-datatype.png"/>
 </imageobject>
 <textobject><phrase>dmn tDriver custom datatype</phrase></textobject>
 </mediaobject>
@@ -401,7 +345,7 @@ assets and logic in Red Hat Decision Manager.</simpara>
 <title>The tViolation custom data type</title>
 <mediaobject>
 <imageobject>
-<imagedata fileref="images/_images/dmn/dmn-tViolation-custom-datatype.png"/>
+<imagedata fileref="images/_images/DMN-source/Getting-Started/Getting-started-with-decision-services/dmn-tViolation-custom-datatype.png"/>
 </imageobject>
 <textobject><phrase>dmn tViolation custom datatype</phrase></textobject>
 </mediaobject>
@@ -433,7 +377,7 @@ assets and logic in Red Hat Decision Manager.</simpara>
 <listitem>
 <simpara>To add the following constraints to the <literal>Type</literal> nested data type, click <emphasis role="strong">Edit</emphasis> → <emphasis role="strong">Constraints</emphasis> → <emphasis role="strong">Enumeration</emphasis> and add the following constraints. Click the check icon <inlinemediaobject>
 <imageobject>
-<imagedata fileref="images/_images/dmn/dmn-datatype-constraints-tickmark.png"/>
+<imagedata fileref="images/_images/DMN-source/Getting-Started/Getting-started-with-decision-services/dmn-datatype-constraints-tickmark.png"/>
 </imageobject>
 <textobject><phrase>dmn datatype constraints tickmark</phrase></textobject>
 </inlinemediaobject> to save each enumeration constraint that you add.</simpara>
@@ -455,7 +399,7 @@ assets and logic in Red Hat Decision Manager.</simpara>
 <title>The tFine custom data type</title>
 <mediaobject>
 <imageobject>
-<imagedata fileref="images/_images/dmn/dmn-tFine-custom-datatype.png"/>
+<imagedata fileref="images/_images/DMN-source/Getting-Started/Getting-started-with-decision-services/dmn-tFine-custom-datatype.png"/>
 </imageobject>
 <textobject><phrase>dmn tFine custom datatype</phrase></textobject>
 </mediaobject>
@@ -530,7 +474,7 @@ assets and logic in Red Hat Decision Manager.</simpara>
 <title>Fine decision table</title>
 <mediaobject>
 <imageobject>
-<imagedata fileref="images/_images/dmn/dmn-gs-fine-decision-table.png"/>
+<imagedata fileref="images/_images/DMN-source/Getting-Started/Getting-started-with-decision-services/dmn-gs-fine-decision-table.png"/>
 </imageobject>
 <textobject><phrase>dmn gs fine decision table</phrase></textobject>
 </mediaobject>
@@ -539,7 +483,7 @@ assets and logic in Red Hat Decision Manager.</simpara>
 <title>Should the driver be suspended?</title>
 <mediaobject>
 <imageobject>
-<imagedata fileref="images/_images/dmn/dmn-gs-context-table.png"/>
+<imagedata fileref="images/_images/DMN-source/Getting-Started/Getting-started-with-decision-services/dmn-gs-context-table.png"/>
 </imageobject>
 <textobject><phrase>dmn gs context table</phrase></textobject>
 </mediaobject>
@@ -685,7 +629,7 @@ assets and logic in Red Hat Decision Manager.</simpara>
 <title>Test scenario for the traffic violations example</title>
 <mediaobject>
 <imageobject>
-<imagedata fileref="images/_images/dmn/dmn-gs-traffic-violation-test-scenarios.png"/>
+<imagedata fileref="images/_images/DMN-source/Getting-Started/Getting-started-with-decision-services/dmn-gs-traffic-violation-test-scenarios.png"/>
 </imageobject>
 <textobject><phrase>dmn gs traffic violation test scenarios</phrase></textobject>
 </mediaobject>
@@ -885,7 +829,7 @@ assets and logic in Red Hat Decision Manager.</simpara>
 <title>Test scenario execution result for the traffic violations example</title>
 <mediaobject>
 <imageobject>
-<imagedata fileref="images/_images/dmn/dmn-gs-test-scenarios-execution-results.png"/>
+<imagedata fileref="images/_images/DMN-source/Getting-Started/Getting-started-with-decision-services/dmn-gs-test-scenarios-execution-results.png"/>
 </imageobject>
 <textobject><phrase>dmn gs test scenarios execution results</phrase></textobject>
 </mediaobject>
@@ -894,6 +838,62 @@ assets and logic in Red Hat Decision Manager.</simpara>
 </listitem>
 </orderedlist>
 </section>
+</chapter>
+<chapter xml:id="gs-dmn-gs-new-project-creating-proc">
+<title>Creating the traffic violations project</title>
+<simpara>For this example, create a new project called <literal>traffic-violation</literal>. A project is a container for assets such as data objects, DMN assets, and test scenarios. This example project that you are creating is similar to the existing <emphasis role="strong">Traffic_Violation</emphasis> sample project in Business Central.</simpara>
+<orderedlist numeration="arabic">
+<title>Procedure</title>
+<listitem>
+<simpara>Log in to Business Central.</simpara>
+</listitem>
+<listitem>
+<simpara>Go to <emphasis role="strong">Menu</emphasis> → <emphasis role="strong">Design</emphasis> → <emphasis role="strong">Projects</emphasis>.</simpara>
+<simpara>Red Hat Decision Manager provides a default space called <emphasis role="strong">MySpace</emphasis>, as shown in the following image. You can use the default space to create and test example projects.</simpara>
+<figure>
+<title>Default space</title>
+<mediaobject>
+<imageobject>
+<imagedata fileref="images/_images/spaces-teams.png"/>
+</imageobject>
+<textobject><phrase>spaces teams</phrase></textobject>
+</mediaobject>
+</figure>
+</listitem>
+<listitem>
+<simpara>Click <emphasis role="strong">Add Project</emphasis>.</simpara>
+</listitem>
+<listitem>
+<simpara>Enter <literal>traffic-violation</literal> in the <emphasis role="strong">Name</emphasis> field.</simpara>
+</listitem>
+<listitem>
+<simpara>Click <emphasis role="strong">Configure Advanced Options</emphasis> to expand the GAV fields and enter the following values:</simpara>
+<itemizedlist>
+<listitem>
+<simpara><emphasis role="strong">Group ID</emphasis>: <literal>org.kie.example.traffic</literal></simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">Artifact ID</emphasis>: <literal>traffic-violation</literal></simpara>
+</listitem>
+<listitem>
+<simpara><emphasis role="strong">Version</emphasis>: <literal>1.0.0</literal></simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>Click <emphasis role="strong">Add</emphasis>.</simpara>
+<figure>
+<title>Add Project window with expanded Advanced Options</title>
+<mediaobject>
+<imageobject>
+<imagedata fileref="images/_images/dmn-new-project-gs.png"/>
+</imageobject>
+<textobject><phrase>dmn new project gs</phrase></textobject>
+</mediaobject>
+</figure>
+<simpara>The <emphasis role="strong">Assets</emphasis> view of the project opens.</simpara>
+</listitem>
+</orderedlist>
 </chapter>
 <chapter xml:id="ds-dmn-execution-con">
 <title>DMN model execution</title>

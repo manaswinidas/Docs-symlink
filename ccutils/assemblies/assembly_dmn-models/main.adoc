@@ -34,8 +34,6 @@ include::{drools-dir}/DMN/DMNGS/gs-decision-examples-central-con.asciidoc[levelo
 
 include::{drools-dir}/DMN/DMNGS/gs-decision-examples-central-proc.asciidoc[leveloffset=+2]
 
-include::{drools-dir}/DMN/DMNGS/gs-dmn-gs-new-project-creating-proc.asciidoc[leveloffset=+1]
-
 include::{drools-dir}/DMN/DMNDS/ds-dmn-con.asciidoc[leveloffset=+1]
 
 include::{drools-dir}/DMN/DMNGS/gs-dmn-gs-creating-drd-proc.asciidoc[leveloffset=+2]
@@ -49,6 +47,8 @@ include::{drools-dir}/DMN/DMNGS/gs-dmn-gs-defining-decision-logic-proc.asciidoc[
 include::{drools-dir}/DMN/DMNGS/gs-test-scenarios-intro-con.asciidoc[leveloffset=+1]
 
 include::{drools-dir}/DMN/DMNGS/gs-dmn-gs-testing-test-scenario-proc.asciidoc[leveloffset=+2]
+
+include::{drools-dir}/DMN/DMNGS/gs-dmn-gs-new-project-creating-proc.asciidoc[leveloffset=+1]
 
 include::{drools-dir}/DMN/DMNDS/ds-dmn-execution-con.asciidoc[leveloffset=+1]
 

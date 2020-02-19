@@ -1,6 +1,6 @@
 [id='ds-dmn-support-con_{context}']
 = DMN support in {PRODUCT}
-:leveloffset: 1
+:leveloffset: +1
 {PRODUCT} provides design and runtime support for DMN 1.2 models at conformance level 3. You can integrate DMN models with your {PRODUCT} decision services in several ways:
 
 * Design your DMN models directly in {CENTRAL} using the DMN designer
@@ -19,7 +19,7 @@ endif::[]
 
 [id='ds-dmn-properties-ref_{context}']
 = Configurable DMN properties in {PRODUCT}
-:leveloffset: 2
+:leveloffset: +2
 {PRODUCT} provides the following DMN properties that you can configure when you execute your DMN models on {KIE_SERVER} or on your client application:
 
 org.kie.dmn.strictConformance::

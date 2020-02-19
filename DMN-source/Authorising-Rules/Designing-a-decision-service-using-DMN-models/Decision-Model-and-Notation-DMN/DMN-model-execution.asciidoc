@@ -1,6 +1,6 @@
 [id='ds-dmn-execution-con']
 = DMN model execution
-:leveloffset: 1
+:leveloffset: +1
 You can create or import DMN files in your {PRODUCT} project using {CENTRAL} or package the DMN files as part of your project knowledge JAR (KJAR) file without {CENTRAL}. After you implement your DMN files in your {PRODUCT} project, you can execute the DMN decision service by deploying the KIE container that contains it to {KIE_SERVER} for remote access
 ifeval::["{context}" == "decision-service-getting-started"]
 and interacting with the container using the {KIE_SERVER} REST API.
@@ -19,7 +19,7 @@ endif::[]
 
 [id='ds-dmn-execution-embedded-proc']
 = Embedding a DMN call directly in a Java application
-:leveloffset: 2
+:leveloffset: +2
 A KIE container is local when the knowledge assets are either embedded directly into the calling program or are physically pulled in using Maven dependencies for the KJAR. You typically embed knowledge assets directly into a project if there is a tight relationship between the version of the code and the version of the DMN definition. Any changes to the decision take effect after you have intentionally updated and redeployed the application. A benefit of this approach is that proper operation does not rely on any external dependencies to the run time, which can be a limitation of locked-down environments.
 
 Using Maven dependencies enables further flexibility because the specific version of the decision can dynamically change, (for example, by using a system property), and it can be periodically scanned for updates and automatically updated. This introduces an external dependency on the deploy time of the service, but executes the decision locally, reducing reliance on an external service being available during run time.
@@ -170,7 +170,7 @@ If the DMN model was not previously compiled as an executable model for more eff
 
 [id='ds-dmn-execution-remote-java-proc']
 = Executing a DMN service using the {KIE_SERVER} Java client API
-:leveloffset: 2
+:leveloffset: +2
 The {KIE_SERVER} Java client API provides a lightweight approach to invoking a remote DMN service either through the REST or JMS interfaces of {KIE_SERVER}. This approach reduces the number of runtime dependencies necessary to interact with a KIE base. Decoupling the calling code from the decision definition also increases flexibility by enabling them to iterate independently at the appropriate pace.
 
 For more information about the {KIE_SERVER} Java client API, see
@@ -321,7 +321,7 @@ NOTE: If the KIE container only contains one DMN model, you can omit `$modelName
 
 [id='ds-dmn-execution-rest-proc']
 = Executing a DMN service using the {KIE_SERVER} REST API
-:leveloffset: 2
+:leveloffset: +2
 Directly interacting with the REST endpoints of {KIE_SERVER} provides the most separation between the calling code and the decision logic definition. The calling code is completely free of direct dependencies, and you can implement it in an entirely different development platform such as `node.js` or `.net`. The examples in this section demonstrate Nix-style curl commands but provide relevant information to adapt to any REST client.
 
 For more information about the {KIE_SERVER} REST API, see

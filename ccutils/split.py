@@ -3,7 +3,7 @@ import shutil
 import glob
 import itertools
 import logging
-import configparser
+from configparser import ConfigParser
 import re
 
 def get_file_with_parents(filepath, levels):
@@ -23,7 +23,7 @@ def find(name, path):
 
 def get_file_name(part):
     """get file name using regex from fragment ID"""
-    return re.findall(r"='(.*\-[a-z]+).*", part)[0]
+    return re.findall(r"'(.*\-[a-z]+).*", part)[0]
 
 def get_replaceid(fragment):
     """get replace id for shared content"""
@@ -36,18 +36,18 @@ def split(meta_attribute, files, dest, search_dir):
     for file in files:
         with open(file, "r") as fragment_content:
             content = fragment_content.read()
-            for fragment in content.split("[id"):
+            for fragment in content.split("[id="):
                 if not fragment.strip():
                     continue  # make sure fragment not empty
-                if meta_attribute in fragment:
+                if meta_attribute not in fragment:
+                    file_name = dest+"/"+str(get_file_name(fragment))+".asciidoc"
+                else:
                     replaceid=get_replaceid(fragment)
                     file_name=str(find(replaceid, search_dir))
-                else:
-                    file_name = dest+"/"+str(get_file_name(fragment))+".asciidoc"
                 all_files.append(file_name)
                 if meta_attribute not in fragment:
                     with open(file_name, "w") as f:
-                        f.write("[id"+fragment)
+                        f.write("[id="+fragment)
 
 def assembly_list(file, output_lines, assembly_line, leveloffset, level):
     """function to generate assembly lines per file"""
@@ -79,8 +79,9 @@ def assembly_generate(assembly_file, search_dir, assembly_line, leveloffset, met
 
 
 def main():
-    config = configparser.ConfigParser()
-    config.readfp(open(r'.config'))
+    config=ConfigParser()
+    config.read(".config")
+    # config.readfp(open(r'.config'))
     split_source = os.getcwd()+config.get('Split-config', 'split_source')
     split_dest = os.getcwd()+config.get('Split-config', 'split_dest')
     assembly_file = os.getcwd()+config.get('Split-config', 'assembly_file')
