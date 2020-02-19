@@ -1,73 +1,86 @@
 [id='assembly_dmn-models']
 
-
-
 include::_artifacts/document-attributes.adoc[]
 
-
-
 = Designing a decision service using DMN models
-
 // Context attribute is assembly specific and enables module reuse between assemblies.
-
 :doctype: book
-
 :imagesdir: _images
-
 :context: dmn-models
-
 include::_artifacts/author-group.adoc[]
 
-
-
 // Purpose statement for the assembly
-
 As a business analyst or business rules developer, you can use Decision Model and Notation (DMN) to model a decision service graphically in a decision requirements diagram (DRD). This diagram consists of one or more decision requirements graphs (DRGs) that trace business decisions from start to finish, with each decision node using logic defined in DMN boxed expressions such as decision tables. {PRODUCT} provides design and runtime support for DMN 1.2 models at conformance level 3. You can design your DMN models directly in {CENTRAL} or import existing DMN models into your {PRODUCT} projects for deployment and execution.
-
-
 
 For more information about DMN, see the Object Management Group (OMG) https://www.omg.org/spec/DMN[Decision Model and Notation specification].
 
+// Modules - concepts, procedures, refs, etc.
 
+include::{drools-dir}/DMN/dmn-con.asciidoc[leveloffset=+1]
 
-include::{drools-dir}/DMN/DMNGS/gs-decision-examples-central-con.asciidoc[leveloffset=+1]
+include::{drools-dir}/DMN/dmn-conformance-levels-con.asciidoc[leveloffset=+2]
 
-include::{drools-dir}/DMN/DMNGS/gs-decision-examples-central-proc.asciidoc[leveloffset=+2]
+include::{drools-dir}/DMN/dmn-drd-components-ref.asciidoc[leveloffset=+2]
 
-include::{drools-dir}/DMN/DMNDS/ds-dmn-con.asciidoc[leveloffset=+1]
+include::{drools-dir}/DMN/dmn-feel-con.asciidoc[leveloffset=+2]
 
-include::{drools-dir}/DMN/DMNGS/gs-dmn-gs-creating-drd-proc.asciidoc[leveloffset=+2]
+include::{drools-dir}/DMN/dmn-names-con.asciidoc[leveloffset=+3]
 
-include::{drools-dir}/DMN/DMNGS/gs-dmn-gs-creating-custom-datatypes-proc.asciidoc[leveloffset=+2]
+include::{drools-dir}/DMN/dmn-data-types-ref.asciidoc[leveloffset=+3]
 
-include::{drools-dir}/DMN/DMNGS/gs-dmn-gs-assigning-custom-datatypes-proc.asciidoc[leveloffset=+2]
+include::{drools-dir}/DMN/dmn-boxed-expressions-con.asciidoc[leveloffset=+2]
 
-include::{drools-dir}/DMN/DMNGS/gs-dmn-gs-defining-decision-logic-proc.asciidoc[leveloffset=+2]
+include::{drools-dir}/DMN/dmn-decision-tables-con.asciidoc[leveloffset=+3]
 
-include::{drools-dir}/DMN/DMNGS/gs-test-scenarios-intro-con.asciidoc[leveloffset=+1]
+include::{drools-dir}/DMN/dmn-decision-tables-hit-policies-con.asciidoc[leveloffset=+4]
 
-include::{drools-dir}/DMN/DMNGS/gs-dmn-gs-testing-test-scenario-proc.asciidoc[leveloffset=+2]
+include::{drools-dir}/DMN/dmn-literal-expressions-con.asciidoc[leveloffset=+3]
 
-include::{drools-dir}/DMN/DMNGS/gs-dmn-gs-new-project-creating-proc.asciidoc[leveloffset=+1]
+include::{drools-dir}/DMN/dmn-context-expressions-con.asciidoc[leveloffset=+3]
 
-include::{drools-dir}/DMN/DMNDS/ds-dmn-execution-con.asciidoc[leveloffset=+1]
+include::{drools-dir}/DMN/dmn-relation-expressions-con.asciidoc[leveloffset=+3]
 
-include::{drools-dir}/DMN/DMNDS/ds-dmn-execution-rest-proc.asciidoc[leveloffset=+2]
+include::{drools-dir}/DMN/dmn-function-expressions-con.asciidoc[leveloffset=+3]
+
+include::{drools-dir}/DMN/dmn-invocation-expressions-con.asciidoc[leveloffset=+3]
+
+include::{drools-dir}/DMN/dmn-model-example-ref.asciidoc[leveloffset=+2]
+
+include::{drools-dir}/DMN/dmn-support-con.asciidoc[leveloffset=+1]
+
+ifdef::DROOLS[]
+include::{drools-dir}/DMN/dmn-feel-enhancements-ref.asciidoc[leveloffset=+2]
+
+include::{drools-dir}/DMN/dmn-model-enhancements-ref.asciidoc[leveloffset=+2]
+endif::DROOLS[]
+
+include::{drools-dir}/DMN/dmn-properties-ref.asciidoc[leveloffset=+2]
+
+include::{drools-dir}/DMN/dmn-model-creating-proc.asciidoc[leveloffset=+1]
+
+include::{drools-dir}/DMN/dmn-logic-defining-proc.asciidoc[leveloffset=+2]
+
+include::{drools-dir}/DMN/dmn-data-types-defining-proc.asciidoc[leveloffset=+2]
+
+include::{drools-dir}/DMN/dmn-included-models-proc.asciidoc[leveloffset=+2]
+
+include::{drools-dir}/DMN/dmn-designer-nav-ref.asciidoc[leveloffset=+2]
+
+include::{drools-dir}/DMN/dmn-execution-con.asciidoc[leveloffset=+1]
+
+include::{drools-dir}/DMN/dmn-execution-embedded-proc.asciidoc[leveloffset=+2]
+
+include::{drools-dir}/DMN/dmn-execution-remote-java-proc.asciidoc[leveloffset=+2]
+
+include::{drools-dir}/DMN/dmn-execution-rest-proc.asciidoc[leveloffset=+2]
 
 == Additional resources
-
 * https://www.omg.org/spec/DMN[Decision Model and Notation specification]
-
 * https://dmn-tck.github.io/tck/[DMN Technology Compatibility Kit]
-
 * {URL_PACKAGING_DEPLOYING_PROJECT}[_{PACKAGING_DEPLOYING_PROJECT}_]
-
 * {URL_KIE_APIS}[_{KIE_APIS}_]
 
-
-
 // Versioning info
-
 include::_artifacts/versioning-information.adoc[]
 
-
+// End of main.adoc
