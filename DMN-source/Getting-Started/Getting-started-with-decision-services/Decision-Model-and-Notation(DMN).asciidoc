@@ -1,5 +1,4 @@
 [id='gs-dmn-con']
-:imagesdir: ../../..
 :replaceWith: ds-dmn-con.asciidoc
 link:https://github.com/manaswinidas/DMN/wiki/Decision-Model-and-Notation-DMN[Decision Model and Notation]
 
