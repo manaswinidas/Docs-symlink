@@ -36,7 +36,7 @@ def split(meta_attribute, files, dest, search_dir):
     for file in files:
         with open(file, "r") as fragment_content:
             content = fragment_content.read()
-            for fragment in content.split("[id="):
+            for fragment in content.split("[id=")[1:]:
                 if not fragment.strip():
                     continue  # make sure fragment not empty
                 if meta_attribute not in fragment:
