@@ -1,3 +1,4 @@
+:imagesdir: ../../..
 [id='gs-dmn-con']
 :replaceWith: ds-dmn-con.asciidoc
 link:https://github.com/manaswinidas/DMN/wiki/Decision-Model-and-Notation-DMN[Decision Model and Notation]
@@ -208,5 +209,3 @@ Right-click the third row and select `Insert below` to add another row.
 . Click *Save* to open the *Confirm Save* dialog box and click *Save* again.
 +
 You have defined how to calculate the fine and the context for deciding when to suspend the driver. You can navigate to the *traffic-violation* project page and click *Build* to build the example project and address any errors noted in the *Alerts* panel.
-
-:imagesdir: ../../..

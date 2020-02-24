@@ -1,3 +1,4 @@
+:imagesdir: ../../..
 [id='gs-dmn-gs-new-project-creating-proc']
 = Creating the traffic violations project
 :leveloffset: +1
@@ -27,4 +28,3 @@ image::DMN-source/Getting-Started/Getting-started-with-decision-services/spaces-
 image::DMN-source/Getting-Started/Getting-started-with-decision-services/dmn-new-project-gs.png[]
 +
 The *Assets* view of the project opens.
-:imagesdir: ../../..

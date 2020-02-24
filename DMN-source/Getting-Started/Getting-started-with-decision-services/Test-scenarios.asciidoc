@@ -1,3 +1,4 @@
+:imagesdir: ../../..
 [id='gs-test-scenarios-intro-con']
 = Test scenarios
 :leveloffset: +1
@@ -95,4 +96,3 @@ In case of failure, correct the errors and run the test scenarios again.
 
 //.DRD for the Traffic Violation example
 //image::dmn/dmn-traffic-violations-drd.png[]
-:imagesdir: ../../..
