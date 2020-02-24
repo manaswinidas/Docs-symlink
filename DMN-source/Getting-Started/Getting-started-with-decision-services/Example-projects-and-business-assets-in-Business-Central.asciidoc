@@ -71,4 +71,4 @@ To configure the {KIE_SERVER} environment mode, set the `org.kie.server.mode` sy
 
 To review project deployment details (if applicable), go to *Menu* -> *Deploy* -> *Execution Servers*.
 --
-
+:imagesdir: ../../..
