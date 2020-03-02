@@ -1,4 +1,4 @@
-import os
+import os, fnmatch
 import shutil
 import glob
 import itertools
@@ -77,6 +77,20 @@ def assembly_generate(assembly_file, search_dir, assembly_line, leveloffset, met
     f.write("\n".join(final))
     f.close()
 
+def prepare_images_for_ccutils(split_source, images_dest):
+    """copy all images from community directory to product directory and change paths accordingly"""
+    for imgfile in glob.glob(split_source+"**/*.png", recursive=True):
+        shutil.copy(imgfile, images_dest)
+    
+def findReplace(split_source, images_find, images_replace, filePattern):
+    for path, dirs, files in os.walk(os.path.abspath(split_source)):
+        for filename in fnmatch.filter(files, filePattern):
+            filepath = os.path.join(path, filename)
+            with open(filepath) as f:
+                s = f.read()
+            s = s.replace(images_find, images_replace)
+            with open(filepath, "w") as f:
+                f.write(s)
 
 def main():
     config=ConfigParser()
@@ -89,6 +103,9 @@ def main():
     assembly_line=config.get('Split-config', 'assembly_line')
     leveloffset=config.get('Split-config', 'leveloffset')
     meta_attribute=config.get('Split-config', 'meta_attribute')
+    images_dest=os.getcwd()+config.get('Split-config', 'images_dest')
+    images_find=config.get('Split-config','images_find')
+    images_replace=config.get('Split-config','images_replace')
     try:
         if(os.path.exists(split_dest)):
             shutil.rmtree(split_dest)
@@ -98,6 +115,8 @@ def main():
     files = [f for f in glob.glob(split_source+"/*.asciidoc", recursive=True)]
     split(meta_attribute, files, split_dest, search_dir)
     assembly_generate(assembly_file, search_dir, assembly_line, leveloffset, meta_attribute)
+    prepare_images_for_ccutils(split_source, images_dest)
+    findReplace(split_source, images_find, images_replace, ".asciidoc")
     
 if __name__ == "__main__":
     main()
