@@ -1,4 +1,4 @@
-:imagesdir: ../../../..
+:imagesdir: ../../../../..
 :images-dir: DMN-source/Authorising-Rules/Designing-a-decision-service-using-DMN-models/Decision-Model-Notation-DMN
 [id='ds-dmn-model-creating-proc_{context}']
 = Creating and editing DMN models in {CENTRAL}
