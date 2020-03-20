@@ -1,4 +1,4 @@
-:imagesdir: ../../..
+// :imagesdir: ../../..
 :images-dir: DMN-source/Getting-Started/Getting-started-with-decision-services
 [id='gs-dmn-gs-new-project-creating-proc']
 = Creating the traffic violations project
