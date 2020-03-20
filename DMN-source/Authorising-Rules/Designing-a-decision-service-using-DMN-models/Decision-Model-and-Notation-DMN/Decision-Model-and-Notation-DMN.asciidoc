@@ -42,55 +42,55 @@ The following table summarizes the components in a DRD:
 |Decision
 |Node where one or more input elements determine an output based on defined decision logic.
 a|
-image::DMN-source/Authorising-Rules/Designing-a-decision-service-using-DMN-models/Decision-Model-Notation-DMN/dmn-decision-node.png[]
+image::{images-dir}/dmn-decision-node.png[]
 
 |Business knowledge model
 |Reusable function with one or more decision elements. Decisions that have the same logic but depend on different sub-input data or sub-decisions use business knowledge models to determine which procedure to follow.
 a|
-image::DMN-source/Authorising-Rules/Designing-a-decision-service-using-DMN-models/Decision-Model-Notation-DMN/dmn-bkm-node.png[]
+image::{images-dir}/dmn-bkm-node.png[]
 
 |Knowledge source
 |External authorities, documents, committees, or policies that regulate a decision or business knowledge model. Knowledge sources are references to real-world factors rather than executable business rules.
 a|
-image::DMN-source/Authorising-Rules/Designing-a-decision-service-using-DMN-models/Decision-Model-Notation-DMN/dmn-knowledge-source-node.png[]
+image::{images-dir}/dmn-knowledge-source-node.png[]
 
 |Input data
 |Information used in a decision node or a business knowledge model. Input data usually includes business-level concepts or objects relevant to the business, such as loan applicant data used in a lending strategy.
 a|
-image::DMN-source/Authorising-Rules/Designing-a-decision-service-using-DMN-models/Decision-Model-Notation-DMN/dmn-input-data-node.png[]
+image::{images-dir}/dmn-input-data-node.png[]
 
 |Decision service
 a|Top-level decision containing a set of reusable decisions published as a service for invocation. A decision service can be invoked from an external application or a BPMN business process.
 
 a|
-image::DMN-source/Authorising-Rules/Designing-a-decision-service-using-DMN-models/Decision-Model-Notation-DMN/dmn-decision-service-node.png[]
+image::{images-dir}/dmn-decision-service-node.png[]
 
 .3+|Requirement connectors
 |Information requirement
 |Connection from an input data node or decision node to another decision node that requires the information.
 a|
-image::DMN-source/Authorising-Rules/Designing-a-decision-service-using-DMN-models/Decision-Model-Notation-DMN/dmn-info-connector.png[]
+image::{images-dir}/dmn-info-connector.png[]
 
 |Knowledge requirement
 |Connection from a business knowledge model to a decision node or to another business knowledge model that invokes the decision logic.
 a|
-image::DMN-source/Authorising-Rules/Designing-a-decision-service-using-DMN-models/Decision-Model-Notation-DMN/dmn-knowledge-connector.png[]
+image::{images-dir}/dmn-knowledge-connector.png[]
 
 |Authority requirement
 |Connection from an input data node or a decision node to a dependent knowledge source or from a knowledge source to a decision node, business knowledge model, or another knowledge source.
 a|
-image::DMN-source/Authorising-Rules/Designing-a-decision-service-using-DMN-models/Decision-Model-Notation-DMN/dmn-authority-connector.png[]
+image::{images-dir}/dmn-authority-connector.png[]
 
 .2+|Artifacts
 |Text annotation
 |Explanatory note associated with an input data node, decision node, business knowledge model, or knowledge source.
 a|
-image::DMN-source/Authorising-Rules/Designing-a-decision-service-using-DMN-models/Decision-Model-Notation-DMN/dmn-annotation-node.png[]
+image::{images-dir}/dmn-annotation-node.png[]
 
 |Association
 |Connection from an input data node, decision node, business knowledge model, or knowledge source to a text annotation.
 a|
-image::DMN-source/Authorising-Rules/Designing-a-decision-service-using-DMN-models/Decision-Model-Notation-DMN/dmn-association-connector.png[]
+image::{images-dir}/dmn-association-connector.png[]
 |===
 
 The following table summarizes the permitted connectors between DRD elements:
@@ -107,82 +107,82 @@ The following table summarizes the permitted connectors between DRD elements:
 |Decision
 |Information requirement
 a|
-image::DMN-source/Authorising-Rules/Designing-a-decision-service-using-DMN-models/Decision-Model-Notation-DMN/dmn-decision-to-decision.png[]
+image::{images-dir}/dmn-decision-to-decision.png[]
 
 .2+|Business knowledge model
 |Decision
 .2+|Knowledge requirement
 a|
-image::DMN-source/Authorising-Rules/Designing-a-decision-service-using-DMN-models/Decision-Model-Notation-DMN/dmn-bkm-to-decision.png[]
+image::{images-dir}/dmn-bkm-to-decision.png[]
 
 |Business knowledge model
 a|
-image::DMN-source/Authorising-Rules/Designing-a-decision-service-using-DMN-models/Decision-Model-Notation-DMN/dmn-bkm-to-bkm.png[]
+image::{images-dir}/dmn-bkm-to-bkm.png[]
 
 .2+a|Decision service
 
 |Decision
 .2+|Knowledge requirement
 a|
-image::DMN-source/Authorising-Rules/Designing-a-decision-service-using-DMN-models/Decision-Model-Notation-DMN/dmn-decision-service-to-decision.png[]
+image::{images-dir}/dmn-decision-service-to-decision.png[]
 
 |Business knowledge model
 a|
-image::DMN-source/Authorising-Rules/Designing-a-decision-service-using-DMN-models/Decision-Model-Notation-DMN/dmn-decision-service-to-bkm.png[]
+image::{images-dir}/dmn-decision-service-to-bkm.png[]
 
 .2+|Input data
 |Decision
 |Information requirement
 a|
-image::DMN-source/Authorising-Rules/Designing-a-decision-service-using-DMN-models/Decision-Model-Notation-DMN/dmn-input-to-decision.png[]
+image::{images-dir}/dmn-input-to-decision.png[]
 
 |Knowledge source
 |Authority requirement
 a|
-image::DMN-source/Authorising-Rules/Designing-a-decision-service-using-DMN-models/Decision-Model-Notation-DMN/dmn-input-to-knowledge-source.png[]
+image::{images-dir}/dmn-input-to-knowledge-source.png[]
 
 .3+|Knowledge source
 |Decision
 .3+|Authority requirement
 a|
-image::DMN-source/Authorising-Rules/Designing-a-decision-service-using-DMN-models/Decision-Model-Notation-DMN/dmn-knowledge-source-to-decision.png[]
+image::{images-dir}/dmn-knowledge-source-to-decision.png[]
 
 |Business knowledge model
 a|
-image::DMN-source/Authorising-Rules/Designing-a-decision-service-using-DMN-models/Decision-Model-Notation-DMN/dmn-knowledge-source-to-bkm.png[]
+image::{images-dir}/dmn-knowledge-source-to-bkm.png[]
 
 |Knowledge source
 a|
-image::DMN-source/Authorising-Rules/Designing-a-decision-service-using-DMN-models/Decision-Model-Notation-DMN/dmn-knowledge-source-to-knowledge-source.png[]
+image::{images-dir}/dmn-knowledge-source-to-knowledge-source.png[]
 
 |Decision
 .4+|Text annotation
 .4+|Association
 a|
-image::DMN-source/Authorising-Rules/Designing-a-decision-service-using-DMN-models/Decision-Model-Notation-DMN/dmn-decision-to-annotation.png[]
+image::{images-dir}/dmn-decision-to-annotation.png[]
 
 |Business knowledge model
 a|
-image::DMN-source/Authorising-Rules/Designing-a-decision-service-using-DMN-models/Decision-Model-Notation-DMN/dmn-bkm-to-annotation.png[]
+image::{images-dir}/dmn-bkm-to-annotation.png[]
 
 |Knowledge source
 a|
-image::DMN-source/Authorising-Rules/Designing-a-decision-service-using-DMN-models/Decision-Model-Notation-DMN/dmn-knowledge-source-to-annotation.png[]
+image::{images-dir}/dmn-knowledge-source-to-annotation.png[]
 
 |Input data
 a|
-image::DMN-source/Authorising-Rules/Designing-a-decision-service-using-DMN-models/Decision-Model-Notation-DMN/dmn-input-to-annotation.png[]
+image::{images-dir}/dmn-input-to-annotation.png[]
 |===
 
 The following example DRD illustrates some of these DMN components in practice:
 
 .Example DRD: Loan prequalification
-image::DMN-source/Authorising-Rules/Designing-a-decision-service-using-DMN-models/Decision-Model-Notation-DMN/dmn-example-drd.png[]
+image::{images-dir}/dmn-example-drd.png[]
 
 The following example DRD illustrates DMN components that are part of a reusable decision service:
 
 .Example DRD: Phone call handling as a decision service
-image::DMN-source/Authorising-Rules/Designing-a-decision-service-using-DMN-models/Decision-Model-Notation-DMN/dmn-example-drd3.png[width=90%]
+image::{images-dir}/dmn-example-drd3.png[width=90%]
 
 In a DMN decision service node, the decision nodes in the bottom segment incorporate input data from outside of the decision service to arrive at a final decision in the top segment of the decision service node. The resulting top-level decisions from the decision service are then implemented in any subsequent decisions or business knowledge requirements of the DMN model. You can reuse DMN decision services in other DMN models to apply the same decision logic with different input data and different outgoing connections.
 
@@ -485,17 +485,17 @@ A decision table in DMN is a visual representation of one or more business rules
 For example, the following decision table determines credit score ratings based on a defined range of a loan applicant's credit score:
 
 .Decision table for credit score rating
-image::DMN-source/Authorising-Rules/Designing-a-decision-service-using-DMN-models/Decision-Model-Notation-DMN/dmn-decision-table-example.png[]
+image::{images-dir}/dmn-decision-table-example.png[]
 
 The following decision table determines the next step in a lending strategy for applicants depending on applicant loan eligibility and the bureau call type:
 
 .Decision table for lending strategy
-image::DMN-source/Authorising-Rules/Designing-a-decision-service-using-DMN-models/Decision-Model-Notation-DMN/dmn-decision-table-example2.png[]
+image::{images-dir}/dmn-decision-table-example2.png[]
 
 The following decision table determines applicant qualification for a loan as the concluding decision node in a loan prequalification decision model:
 
 .Decision table for loan prequalification
-image::DMN-source/Authorising-Rules/Designing-a-decision-service-using-DMN-models/Decision-Model-Notation-DMN/dmn-decision-table-example3.png[]
+image::{images-dir}/dmn-decision-table-example3.png[]
 
 Decision tables are a popular way of modeling rules and decision logic, and are used in many methodologies (such as DMN) and implementation frameworks (such as Drools).
 
@@ -534,12 +534,12 @@ A boxed literal expression in DMN is a literal FEEL expression as text in a tabl
 For example, the following boxed literal expression defines the minimum acceptable PITI calculation (principal, interest, taxes, and insurance) in a lending decision, where `acceptable rate` is a variable defined in the DMN model:
 
 .Boxed literal expression for minimum PITI value
-image::DMN-source/Authorising-Rules/Designing-a-decision-service-using-DMN-models/Decision-Model-Notation-DMN/dmn-literal-expression-example2.png[]
+image::{images-dir}/dmn-literal-expression-example2.png[]
 
 The following boxed literal expression sorts a list of possible dating candidates (soul mates) in an online dating application based on their score on criteria such as age, location, and interests:
 
 .Boxed literal expression for matching online dating candidates
-image::DMN-source/Authorising-Rules/Designing-a-decision-service-using-DMN-models/Decision-Model-Notation-DMN/dmn-literal-expression-example3b.png[]
+image::{images-dir}/dmn-literal-expression-example3b.png[]
 
 [id='ds-dmn-context-expressions-con_{context}']
 = Boxed context expressions
@@ -549,12 +549,12 @@ A boxed context expression in DMN is a set of variable names and values with a r
 For example, the following boxed context expression defines the factors for sorting delayed passengers in a flight-rebooking decision model, based on defined data types (`tPassengerTable`, `tFlightNumberList`):
 
 .Boxed context expression for flight passenger waiting list
-image::DMN-source/Authorising-Rules/Designing-a-decision-service-using-DMN-models/Decision-Model-Notation-DMN/dmn-context-expression-example.png[]
+image::{images-dir}/dmn-context-expression-example.png[]
 
 The following boxed context expression defines the factors that determine whether a loan applicant can meet minimum mortgage payments based on principal, interest, taxes, and insurance (PITI), represented as a front-end ratio calculation with a sub-context expression:
 
 .Boxed context expression for front-end client PITI ratio
-image::DMN-source/Authorising-Rules/Designing-a-decision-service-using-DMN-models/Decision-Model-Notation-DMN/dmn-context-expression-example2.png[]
+image::{images-dir}/dmn-context-expression-example2.png[]
 
 [id='ds-dmn-relation-expressions-con_{context}']
 = Boxed relation expressions
@@ -564,7 +564,7 @@ A boxed relation expression in DMN is a traditional data table with information 
 For example, the following boxed relation expression provides information about employees in an employee rostering decision:
 
 .Boxed relation expression with employee information
-image::DMN-source/Authorising-Rules/Designing-a-decision-service-using-DMN-models/Decision-Model-Notation-DMN/dmn-relation-expression-example.png[]
+image::{images-dir}/dmn-relation-expression-example.png[]
 
 [id='ds-dmn-function-expressions-con_{context}']
 = Boxed function expressions
@@ -574,17 +574,17 @@ A boxed function expression in DMN is a parameterized boxed expression containin
 For example, the following boxed function expression determines airline flight capacity in a flight-rebooking decision model:
 
 .Boxed function expression for flight capacity
-image::DMN-source/Authorising-Rules/Designing-a-decision-service-using-DMN-models/Decision-Model-Notation-DMN/dmn-function-expression-example.png[]
+image::{images-dir}/dmn-function-expression-example.png[]
 
 The following boxed function expression contains a basic Java function as a context expression for determining absolute value in a decision model calculation:
 
 .Boxed function expression for absolute value
-image::DMN-source/Authorising-Rules/Designing-a-decision-service-using-DMN-models/Decision-Model-Notation-DMN/dmn-function-expression-example2.png[]
+image::{images-dir}/dmn-function-expression-example2.png[]
 
 The following boxed function expression determines a monthly mortgage installment as a business knowledge model in a lending decision, with the function value defined as a nested context expression:
 
 .Boxed function expression for installment calculation in business knowledge model
-image::DMN-source/Authorising-Rules/Designing-a-decision-service-using-DMN-models/Decision-Model-Notation-DMN/dmn-function-expression-example3.png[]
+image::{images-dir}/dmn-function-expression-example3.png[]
 
 [id='ds-dmn-invocation-expressions-con_{context}']
 = Boxed invocation expressions
@@ -594,12 +594,12 @@ A boxed invocation expression in DMN is a boxed expression that invokes a busine
 For example, the following boxed invocation expression invokes a `Reassign Next Passenger` business knowledge model as the concluding decision node in a flight-rebooking decision model:
 
 .Boxed invocation expression to reassign flight passengers
-image::DMN-source/Authorising-Rules/Designing-a-decision-service-using-DMN-models/Decision-Model-Notation-DMN/dmn-invocation-example.png[]
+image::{images-dir}/dmn-invocation-example.png[]
 
 The following boxed invocation expression invokes an `InstallmentCalculation` business knowledge model to calculate a monthly installment amount for a loan before proceeding to affordability decisions:
 
 .Boxed invocation expression for required monthly installment
-image::DMN-source/Authorising-Rules/Designing-a-decision-service-using-DMN-models/Decision-Model-Notation-DMN/dmn-invocation-example2.png[]
+image::{images-dir}/dmn-invocation-example2.png[]
 
 
 [id='ds-dmn-model-example-ref_{context}']
@@ -625,7 +625,7 @@ Business knowledge models::
 The airline then uses the DMN standard to model its decision process in the following decision requirements diagram (DRD) for determining the best rebooking solution:
 
 .DRD for flight rebooking
-image::DMN-source/Authorising-Rules/Designing-a-decision-service-using-DMN-models/Decision-Model-Notation-DMN/dmn-passenger-rebooking-drd.png[]
+image::{images-dir}/dmn-passenger-rebooking-drd.png[]
 
 Similar to flowcharts, DRDs use shapes to represent the different elements in a process. Ovals contain the two necessary input data, rectangles contain the decision points in the model, and rectangles with clipped corners (business knowledge models) contain reusable logic that can be repeatedly invoked.
 
@@ -634,12 +634,12 @@ The DRD draws logic for each element from boxed expressions that provide variabl
 Some boxed expressions are basic, such as the following decision for establishing a prioritized waiting list:
 
 .Boxed context expression example for prioritized wait list
-image::DMN-source/Authorising-Rules/Designing-a-decision-service-using-DMN-models/Decision-Model-Notation-DMN/dmn-context-expression-example.png[]
+image::{images-dir}/dmn-context-expression-example.png[]
 
 Some boxed expressions are more complex with greater detail and calculation, such as the following business knowledge model for reassigning the next delayed passenger:
 
 .Boxed function expression for passenger reassignment
-image::DMN-source/Authorising-Rules/Designing-a-decision-service-using-DMN-models/Decision-Model-Notation-DMN/dmn-reassign-passenger.png[]
+image::{images-dir}/dmn-reassign-passenger.png[]
 
 The following is the DMN source file for this decision model:
 

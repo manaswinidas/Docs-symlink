@@ -1,4 +1,5 @@
 :imagesdir: ../../..
+:images-dir: DMN-source/Getting-Started/Getting-started-with-decision-services
 [id='gs-test-scenarios-intro-con']
 = Test scenarios
 :leveloffset: +1
@@ -18,7 +19,7 @@ IMPORTANT: Throughout the test scenarios documentation, all references to _test 
 Use the test scenarios designer in {CENTRAL} to test the DMN decision requirements diagrams (DRDs) and define decision logic for the traffic violations project.
 
 .Test scenario for the traffic violations example
-image::DMN-source/Getting-Started/Getting-started-with-decision-services/dmn-gs-traffic-violation-test-scenarios.png[]
+image::{images-dir}/dmn-gs-traffic-violation-test-scenarios.png[]
 
 .Prerequisites
 * You have successfully built the traffic violations project in {CENTRAL}.
@@ -90,7 +91,7 @@ Right-click the fourth row and select *Insert row below* to add another row.
 . Click the play button to check whether the test scenarios pass or fail.
 +
 .Test scenario execution result for the traffic violations example
-image::DMN-source/Getting-Started/Getting-started-with-decision-services/dmn-gs-test-scenarios-execution-results.png[]
+image::{images-dir}/dmn-gs-test-scenarios-execution-results.png[]
 +
 In case of failure, correct the errors and run the test scenarios again.
 

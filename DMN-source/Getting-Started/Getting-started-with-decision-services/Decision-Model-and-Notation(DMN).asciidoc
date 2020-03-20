@@ -1,4 +1,5 @@
 :imagesdir: ../../..
+:images-dir: DMN-source/Getting-Started/Getting-started-with-decision-services
 [id='gs-dmn-con']
 :replaceWith: ds-dmn-con.asciidoc
 link:https://github.com/manaswinidas/DMN/wiki/Decision-Model-and-Notation-DMN[Decision Model and Notation]
@@ -9,7 +10,7 @@ link:https://github.com/manaswinidas/DMN/wiki/Decision-Model-and-Notation-DMN[De
 A decision requirements diagram (DRD) is a visual representation of your DMN model. Use the  DMN designer in {CENTRAL} to design the DRD for the traffic violations project and to define the decision logic of the DRD components.
 
 .DRD for the Traffic Violations example
-image::DMN-source/Getting-Started/Getting-started-with-decision-services/dmn-traffic-violations-drd.png[]
+image::{images-dir}/dmn-traffic-violations-drd.png[]
 
 .Prerequisites
 * You have created the traffic violations project in {CENTRAL}.
@@ -37,12 +38,12 @@ image::DMN-source/Getting-Started/Getting-started-with-decision-services/dmn-tra
 DMN data types determine the structure of the data that you use within a table, column, or field in a DMN boxed expression for defining decision logic. You can use default DMN data types (such as string, number, or boolean) or you can create custom data types to specify additional fields and constraints that you want to implement for the boxed expression values. Use the DMN designer's *Data Types* tab in {CENTRAL} to define the custom data types for the traffic violations project.
 
 .The custom data types tab
-image::DMN-source/Getting-Started/Getting-started-with-decision-services/dmn-custom-datatypes-tab.png[]
+image::{images-dir}/dmn-custom-datatypes-tab.png[]
 
 Alternately, you can also access the *Data Types* tab from the *Diagram properties* tab on the right. From the *Diagram properties* tab, click *Manage* from *Data type* under *Information item*.
 
 .Diagram properties tab
-image::DMN-source/Getting-Started/Getting-started-with-decision-services/dmn-diagram-properties-tab.png[]
+image::{images-dir}/dmn-diagram-properties-tab.png[]
 
 The following tables list the `Violation`, `Driver`, and `Fine` custom data types that you will create for this project.
 
@@ -89,7 +90,7 @@ The following tables list the `Violation`, `Driver`, and `Fine` custom data type
 . To create the *tDriver* custom data type, click *Add* on the *Data Types* tab, enter `tDriver` in the *Name* field, select `Structure` from the *Type* list, and click *Save*.
 +
 .The tDriver custom data type
-image::DMN-source/Getting-Started/Getting-started-with-decision-services/dmn-tDriver-custom-datatype.png[]
+image::{images-dir}/dmn-tDriver-custom-datatype.png[]
 . To create the first nested data type, enter `Name` in the *Name* field of the nested data type, select *String* from the *Type* list and click *Save*.
 . For each of the remaining nested data types, click the three vertical dots next to the *tDriver* data type, select *Insert nested field*, and add the following nested data types. Click *Save* for each nested data type you add.
 +
@@ -102,7 +103,7 @@ image::DMN-source/Getting-Started/Getting-started-with-decision-services/dmn-tDr
 . To create the *tViolation* custom data type, click *Add* on the *Data Types* tab, enter `tViolation` in the *Name* field, select `Structure` from the *Type* list, and click *Save*.
 +
 .The tViolation custom data type
-image::DMN-source/Getting-Started/Getting-started-with-decision-services/dmn-tViolation-custom-datatype.png[]
+image::{images-dir}/dmn-tViolation-custom-datatype.png[]
 . To create the first nested data type, enter `Code` in the *Name* field of the nested data type, select *String* from the *Type* list and click *Save*.
 . For each of the remaining nested data types, click the three vertical dots next to the *tViolation* data type, select *Insert nested field*, and add the following nested data types. Click *Save* for each nested data type that you add.
 +
@@ -112,7 +113,7 @@ image::DMN-source/Getting-Started/Getting-started-with-decision-services/dmn-tVi
 * *Speed Limit* (number)
 * *Actual Speed* (number)
 
-. To add the following constraints to the `Type` nested data type, click *Edit* -> *Constraints* -> *Enumeration* and add the following constraints. Click the check icon image:DMN-source/Getting-Started/Getting-started-with-decision-services/dmn-datatype-constraints-tickmark.png[] to save each enumeration constraint that you add.
+. To add the following constraints to the `Type` nested data type, click *Edit* -> *Constraints* -> *Enumeration* and add the following constraints. Click the check icon image:{images-dir}/dmn-datatype-constraints-tickmark.png[] to save each enumeration constraint that you add.
 +
 * `"speed"`
 * `"parking"`
@@ -121,7 +122,7 @@ image::DMN-source/Getting-Started/Getting-started-with-decision-services/dmn-tVi
 . To create the *tFine* custom data type, click *Add* on the *Data Types* tab, enter `tFine` in the *Name* field, select `Structure` from the *Type* list, and click *Save*.
 +
 .The tFine custom data type
-image::DMN-source/Getting-Started/Getting-started-with-decision-services/dmn-tFine-custom-datatype.png[]
+image::{images-dir}/dmn-tFine-custom-datatype.png[]
 . To create the first nested data type, enter `Amount` in the *Name* field of the nested data type, select *Number* from the *Type* list and click *Save*.
 . For each of the remaining nested data types, click the three vertical dots next to the *tFine* data type, select *Insert nested field*, and add the following nested data types. Click *Save* for each nested data type that you add.
 +
@@ -158,10 +159,10 @@ You have assigned the custom data types to your DRD's input and decision nodes.
 To calculate the fine and to decide whether the driver is to be suspended or not, you can define the traffic violations DMN decision logic using a DMN decision table and context boxed expression.
 
 .Fine decision table
-image::DMN-source/Getting-Started/Getting-started-with-decision-services/dmn-gs-fine-decision-table.png[]
+image::{images-dir}/dmn-gs-fine-decision-table.png[]
 
 .Should the driver be suspended?
-image::DMN-source/Getting-Started/Getting-started-with-decision-services/dmn-gs-context-table.png[]
+image::{images-dir}/dmn-gs-context-table.png[]
 
 .Prerequisites
 * You have assigned the DMN custom data types to the appropriate decision and input nodes in the traffic violations DRD in {CENTRAL}.

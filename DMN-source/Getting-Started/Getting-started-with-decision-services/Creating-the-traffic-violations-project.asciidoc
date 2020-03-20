@@ -1,5 +1,5 @@
 :imagesdir: ../../..
-:image-dir: DMN-source/Getting-Started/Getting-started-with-decision-services
+:images-dir: DMN-source/Getting-Started/Getting-started-with-decision-services
 [id='gs-dmn-gs-new-project-creating-proc']
 = Creating the traffic violations project
 :leveloffset: +1
@@ -14,7 +14,7 @@ For this example, create a new project called `traffic-violation`. A project is 
 +
 
 .Default space
-image::{image-dir}/spaces-teams.png[]
+image::{images-dir}/spaces-teams.png[]
 
 . Click *Add Project*.
 . Enter `traffic-violation` in the *Name* field.
@@ -26,6 +26,6 @@ image::{image-dir}/spaces-teams.png[]
 +
 
 .Add Project window with expanded Advanced Options
-image::DMN-source/Getting-Started/Getting-started-with-decision-services/dmn-new-project-gs.png[]
+image::{images-dir}/dmn-new-project-gs.png[]
 +
 The *Assets* view of the project opens.
