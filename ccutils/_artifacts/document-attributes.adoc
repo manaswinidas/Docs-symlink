@@ -33,7 +33,7 @@ endif::OP[]
 :op-dir: optaplanner-wb-es-docs/src/main/asciidoc
 :shared-dir: shared-kie-docs/src/main/asciidoc
 :enterprise-dir: enterprise-only
-:images-dir: dmn
+// :images-dir: dmn
 
 // For copyright
 :YEAR: 2019
