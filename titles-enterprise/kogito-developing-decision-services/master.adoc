@@ -1,0 +1,3 @@
+:KOGITO-ENT:
+
+include::doc-content/kogito-docs/src/main/asciidoc/decision-services/chap-kogito-developing-decision-services.adoc[]

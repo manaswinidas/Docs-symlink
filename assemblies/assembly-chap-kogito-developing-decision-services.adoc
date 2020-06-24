@@ -1,0 +1,20 @@
+ifdef::context[:parent-context: {context}]
+[id="chap-kogito-developing-decision-services_{context}"]
+= Developing decision services with {PRODUCT}
+:context: kogito-developing-decision-services
+ifdef::KOGITO-ENT[]
+:doctype: book
+:imagesdir: _images
+include::_artifacts/author-group.adoc[]
+endif::[]
+
+// Purpose statement for the assembly
+As a developer of business decisions, you can use {PRODUCT} business automation to develop decision services using Decision Model and Notation (DMN) models, Drools Rule Language (DRL) rules, XLS or XLSX spreadsheet decision tables, or a combination of all three methods.
+
+// Modules - concepts, procedures, refs, etc.
+
+include::modules/decision-services/ref-decision-authoring-assets.adoc[leveloffset=+1]
+
+
+ifdef::parent-context[:context: {parent-context}]
+ifndef::parent-context[:!context:]
